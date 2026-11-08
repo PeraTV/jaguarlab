@@ -108,7 +108,7 @@ A integridade SHA-256 é obrigatória; tamanho, pacote, assinatura e versão And
 - **Clientes:** todos os campos opcionais, incluindo telefone, e-mail e CPF. Vendas novas podem ser vinculadas por ID; editar/arquivar o cliente preserva o texto histórico das vendas. O cadastro mostra totais, recebimentos e vendas vinculadas. Orçamentos salvos também ficam acessíveis pelo cliente.
 - **Impressoras:** catálogo inicial com Bambu Lab A1/A1 mini, Anycubic Kobra 3, Creality Ender-3 V3 e cadastro personalizado. Kobra 4 é uma referência editável baseada no nome do perfil apresentado pelo usuário, sem volume presumido. Confira o volume da sua máquina. Consumo médio não é inferido da potência nominal: é informado pelo usuário. A seleção integra consumo e custo por hora na calculadora e sugere bico/camada na prévia. Calibrações de outra impressora ficam inativas.
 - **Orçamento:** selecione um cliente opcional, personalize peça, prazo, pagamento, validade e observações. Copiar mantém um texto formatado; WhatsApp abre a composição para você confirmar; Compartilhar usa a seleção do sistema. O texto não inclui CPF do cliente, custos internos ou margem. Dados fiscais da empresa só são incluídos por opção. A foto aparece na prévia, mas não é anexada pelos botões de texto.
-- **Vídeo:** guia narrado em português de 3min21s, com legendas e telas demonstrativas. Está em Tutoriais e na ajuda do backup. Requer internet para reproduzir; o guia em texto continua offline. Não cria repositório nem token automaticamente e não contém credenciais reais.
+- **Vídeo:** guia com voz neural em português de 1min40s, com legendas e telas demonstrativas. Está em Tutoriais e na ajuda do backup. Requer internet para reproduzir; o guia em texto continua offline. Não cria repositório nem token automaticamente e não contém credenciais reais.
 
 Fotos, clientes, impressoras, dados opcionais e orçamentos entram no backup criptografado. Backups antigos recebem listas vazias de clientes e impressoras ao carregar, sem apagar registros.
 
@@ -119,3 +119,8 @@ Fotos, clientes, impressoras, dados opcionais e orçamentos entram no backup cri
 
 ### Modelos locais grandes
 Aceita arquivos até 1 GiB (mostrado como 1 GB na interface). STL binário grande usa leitura por blocos e uma malha simplificada para visualização, sem estimativa geométrica de consumo: use tempo/peso do fatiador. STL ASCII grande deve ser exportado como binário. 3MF grande usa a imagem e os metadados incluídos; sem imagem compatível, exporte STL binário. A complexidade e a memória do aparelho podem limitar a abertura. Modelos e imagens internas do 3MF ficam fora do backup criptografado. O cadastro do projeto, fotos e dados comerciais permanecem; após restaurar em outro aparelho, reimporte o original em Projetos → Editar. Guarde os originais separadamente. Testado com STL real de 72 MB; um arquivo físico de 1 GB ainda não foi validado em celular.
+
+
+### Versão 0.5.1
+Atalho visível para ganhar 100% sobre o custo, sugestões editáveis de orçamento por tipo de peça com trabalho adicional e taxas. O orçamento compartilhado usa o valor escolhido pelo usuário; a referência não é pesquisa de mercado. Pintas do estoque seguem o destaque do tema. Atualização Android prioriza o link de Releases, reduz a espera de conexões sem resposta e abre o instalador após conferir o download. Após autorizar fontes externas, o instalador abre ao voltar ao app. O botão de instalação permanece como alternativa se o Android impedir a abertura. Tutorial substituído por versão de 1min40s com voz neural.
+

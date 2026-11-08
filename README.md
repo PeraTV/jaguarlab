@@ -2,11 +2,13 @@
 
 Gestão de impressão 3D para Android, tablet e Windows, com dados locais e backup individual opcional. Distribuição pública; nenhuma conta ou token é necessário para baixar atualizações.
 
-## Versão 0.5.0
+## Versão 0.5.1
 
-- [Android — baixar APK](https://github.com/PeraTV/onca3d-atualizacoes/releases/download/v0.5.0/Onca3D-0.5.0-Android.apk)
-- [Windows — baixar instalador](https://github.com/PeraTV/onca3d-atualizacoes/releases/download/v0.5.0/Onca3D-0.5.0-Setup.exe)
-- [Tutorial em vídeo — backup privado e token](https://raw.githubusercontent.com/PeraTV/onca3d-atualizacoes/v0.5.0/guides/tutorial-backup.mp4)
+Ganhar 100% sobre o custo com um atalho, orçamento sugerido por tipo de peça e trabalho adicional, pintas acompanhando o tema e abertura automática do instalador Android após o download verificado. Tutorial novo de 1min40s com voz neural. A velocidade depende da rota até o GitHub; o download mantém um link alternativo.
+
+- [Android — baixar APK](https://github.com/PeraTV/onca3d-atualizacoes/releases/download/v0.5.1/Onca3D-0.5.1-Android.apk)
+- [Windows — baixar instalador](https://github.com/PeraTV/onca3d-atualizacoes/releases/download/v0.5.1/Onca3D-0.5.1-Setup.exe)
+- [Tutorial em vídeo — backup privado e token](https://raw.githubusercontent.com/PeraTV/onca3d-atualizacoes/v0.5.1/guides/tutorial-backup.mp4)
 
 Foto e dados opcionais da empresa, clientes com contatos/CPF opcionais, impressoras editáveis e orçamento para copiar, compartilhar e abrir no WhatsApp. Os botões de texto não anexam a logo. Tutorial com telas demonstrativas fictícias, narração e legendas.
 

@@ -1,6 +1,6 @@
 {
   "name": "onca3d",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "private": true,
   "type": "module",
   "description": "Gestão local de impressão 3D",
@@ -61,3 +61,4 @@
     "publish": null
   }
 }
+

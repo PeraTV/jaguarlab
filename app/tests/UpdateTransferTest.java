@@ -10,7 +10,13 @@ public final class UpdateTransferTest {
   final boolean[] verified={false};UpdateTransfer.download(new String[]{},file,sha,3,(phase,b,t,a)->verified[0]="verifying".equals(phase),new UpdateTransfer.Cancellation());require(verified[0]);
   boolean rejected=false;try{UpdateTransfer.download(new String[]{},file,"0".repeat(64),3,(p,b,t,a)->{},new UpdateTransfer.Cancellation());}catch(IOException expected){rejected=true;}require(rejected);
   UpdateTransfer.Cancellation cancelled=new UpdateTransfer.Cancellation();cancelled.cancel();rejected=false;try{UpdateTransfer.download(new String[]{direct},folder.resolve("absent.apk").toFile(),sha,3,(p,b,t,a)->{},cancelled);}catch(IOException expected){rejected=true;}require(rejected);
+  if(args.length==0){
+   final int[] requests={0};final boolean[] fallback={false};
+   URL.setURLStreamHandlerFactory(protocol->protocol.equals("https")?new URLStreamHandler(){protected URLConnection openConnection(URL url){return new HttpURLConnection(url){public void connect(){}public void disconnect(){}public boolean usingProxy(){return false;}public int getResponseCode()throws IOException{requests[0]++;require(getConnectTimeout()==5000);require(getReadTimeout()==8000);if(url.getHost().equals("github.com"))throw new SocketTimeoutException("Simulated stalled route");return 200;}public long getContentLengthLong(){return 3;}public InputStream getInputStream(){return new ByteArrayInputStream("abc".getBytes(StandardCharsets.UTF_8));}};}}:null);
+   File route=folder.resolve("fallback.apk").toFile();UpdateTransfer.download(new String[]{"https://github.com/PeraTV/onca3d-atualizacoes/releases/download/v0.5.0/Onca3D-0.5.0-Android.apk",UpdateTransfer.direct("0.5.0")},route,sha,3,(phase,b,t,a)->{if(phase.equals("retrying"))fallback[0]=true;},new UpdateTransfer.Cancellation());require(requests[0]==2);require(fallback[0]);require(UpdateTransfer.digest(route).equals(sha));
+  }
   if(args.length==4){String version=args[0],hash=args[1];long size=Long.parseLong(args[2]);File target=new File(args[3]);UpdateTransfer.download(new String[]{UpdateTransfer.direct(version),"https://github.com/PeraTV/onca3d-atualizacoes/releases/download/v"+version+"/Onca3D-"+version+"-Android.apk"},target,hash,size,(phase,b,t,a)->System.out.println(phase+" "+b+"/"+t+" attempt "+a),new UpdateTransfer.Cancellation());require(UpdateTransfer.digest(target).equals(hash));require(target.length()==size);System.out.println("LIVE_DOWNLOAD_VERIFIED");}
   System.out.println("TRANSFER_POLICY_TESTS_PASSED");
  }
 }
+
