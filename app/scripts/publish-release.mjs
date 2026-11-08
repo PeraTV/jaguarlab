@@ -13,7 +13,7 @@ const apk=path.resolve(`../distribution/Onca3D-${version}-Android.apk`);
 const apkHash=hash(apk);
 if(apkHash!==android.sha256)throw Error('O APK não corresponde ao hash validado localmente.');
 const exeHash=hash(exe),tag=`v${version}`;
-const notes=`JAGUAR LAB ${version} — digitação com teclado no Android.\n\nUnifica o tratamento da área do teclado, removendo o ajuste simultâneo feito pelo app e pelo SystemBars. Aplica apenas o espaço ainda encoberto pelo teclado e repassa os espaços já tratados como zero, evitando área vazia duplicada.\n\nEnquanto o teclado está aberto, a barra inferior e os botões fixos ficam ocultos e o cabeçalho compacto. O campo em edição é reposicionado quando necessário, sem apagar o valor ou retirar o foco. A navegação retorna ao fechar o teclado.\n\nMantém a consulta corrigida de atualização, as cores e os perfis de estimativa. Instale por cima, sem desinstalar. Guia: https://github.com/${repo}/blob/main/app/README.md\n`;
+const notes=`JAGUAR LAB ${version} — download público com progresso no Android.\n\nUsa primeiro o APK direto da tag pública, com o link de release como alternativa. Tem tempos de conexão limitados, progresso por bytes/porcentagem, cancelamento e erro visível. Separa Baixar e Instalar. O arquivo baixado pode ser reutilizado após nova conferência de integridade.\n\nConfere SHA-256, tamanho quando disponível, pacote e assinatura Android antes de liberar o instalador. A autorização do Android é solicitada depois do download e não exige baixar novamente. Salva cópia de recuperação antes da transferência.\n\nJAGUAR LAB é público e não exige token para baixar. Os backups são individuais. Nenhuma mudança foi feita na distribuição privada do Estilo Carioca. Instale por cima, sem desinstalar. Guia: https://github.com/${repo}/blob/main/app/README.md\n`;
 
 fs.writeFileSync('release/NOTAS.md',notes);
 fs.writeFileSync('release/SHA256SUMS.txt',`${exeHash}  ${path.basename(exe)}\n${apkHash}  ${path.basename(apk)}\n`);
@@ -24,7 +24,7 @@ if(!existing)gh(['release','create',tag,'--draft','--prerelease','--target',proc
 gh(['release','upload',tag,exe,apk,path.resolve('release/SHA256SUMS.txt'),'--clobber']);
 gh(['release','edit',tag,'--draft=false','--prerelease','--notes-file','release/NOTAS.md']);
 const asset=name=>`https://github.com/${repo}/releases/download/${tag}/${name}`;
-fs.writeFileSync('../updates/stable.json',JSON.stringify({schemaVersion:1,appId:'onca3d',channel:'preview',available:true,status:'preview',release:{version,notes:'Prévia para avaliação. Faça backup antes de atualizar.',publishedAt:new Date().toISOString()},platforms:{windows:{url:asset(path.basename(exe)),sha256:exeHash},android:{url:asset(path.basename(apk)),sha256:apkHash}}},null,2)+'\n');
+fs.writeFileSync('../updates/stable.json',JSON.stringify({schemaVersion:1,appId:'onca3d',channel:'preview',available:true,status:'preview',release:{version,notes:'Prévia para avaliação. Faça backup antes de atualizar.',publishedAt:new Date().toISOString()},platforms:{windows:{url:asset(path.basename(exe)),sha256:exeHash,sizeBytes:fs.statSync(exe).size},android:{url:asset(path.basename(apk)),sha256:apkHash,sizeBytes:fs.statSync(apk).size}}},null,2)+'\n');
 execFileSync('git',['config','user.name','github-actions[bot]']);
 execFileSync('git',['config','user.email','41898282+github-actions[bot]@users.noreply.github.com']);
 execFileSync('git',['add','../updates/stable.json']);

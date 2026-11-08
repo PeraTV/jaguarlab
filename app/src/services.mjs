@@ -46,15 +46,14 @@ export async function githubBackup({token,repo,body,restore=false}){
 export async function exportFile(name,body){if(window.oncaDesktop)return window.oncaDesktop.saveFile({name,body});if(Capacitor.isNativePlatform()){const {Filesystem,Directory,Encoding}=await import('@capacitor/filesystem');const {Share}=await import('@capacitor/share');const file=await Filesystem.writeFile({path:name,data:body,directory:Directory.Cache,encoding:Encoding.UTF8});await Share.share({title:'Backup ONÇA 3D',url:file.uri,dialogTitle:'Salvar backup'});return true;}const url=URL.createObjectURL(new Blob([body],{type:'application/octet-stream'}));const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);return true;}
 export async function photo(file){if(!['image/jpeg','image/png','image/webp'].includes(file.type))throw Error('Escolha uma foto JPG, PNG ou WebP.');if(file.size>20*1024*1024)throw Error('A foto deve ter até 20 MB.');const bitmap=await createImageBitmap(file);try{const scale=Math.min(1,960/Math.max(bitmap.width,bitmap.height));const canvas=document.createElement('canvas');canvas.width=Math.round(bitmap.width*scale);canvas.height=Math.round(bitmap.height*scale);canvas.getContext('2d').drawImage(bitmap,0,0,canvas.width,canvas.height);return canvas.toDataURL('image/jpeg',0.82);}finally{bitmap.close();}}
 
-export async function installUpdate(state){
-  if(window.oncaDesktop)return window.oncaDesktop.installUpdate(JSON.stringify(state));
-  if(Capacitor.isNativePlatform()){
-    const {Filesystem,Directory,Encoding}=await import('@capacitor/filesystem');
-    await Filesystem.writeFile({path:`recovery/before-update-${Date.now()}.json`,data:JSON.stringify(state),directory:Directory.Data,encoding:Encoding.UTF8,recursive:true});
-    return registerPlugin('OncaUpdater').install();
-  }
-  window.open('https://github.com/PeraTV/onca3d-atualizacoes/releases','_blank','noopener');
-}
+const NativeUpdater=registerPlugin('OncaUpdater');
+export const hasNativeUpdater=()=>Capacitor.isNativePlatform();
+export const nativeUpdateDownload=state=>NativeUpdater.download({backup:JSON.stringify(state)});
+export const nativeUpdateInstall=()=>NativeUpdater.install();
+export const nativeUpdateCancel=()=>NativeUpdater.cancel();
+export const nativeUpdateStatus=()=>NativeUpdater.status();
+export const onUpdateProgress=callback=>NativeUpdater.addListener('updateProgress',callback);
+export async function installUpdate(state){if(window.oncaDesktop)return window.oncaDesktop.installUpdate(JSON.stringify(state));if(Capacitor.isNativePlatform()){await nativeUpdateDownload(state);return nativeUpdateInstall();}window.open('https://github.com/PeraTV/onca3d-atualizacoes/releases','_blank','noopener');}
 
 export async function fetchTariffs(){
   const filters={DscSubGrupo:'B1',DscClasse:'Residencial',DscSubClasse:'Residencial',DscModalidadeTarifaria:'Convencional',DscBaseTarifaria:'Tarifa de Aplicação',DscDetalhe:'Não se aplica',DscUnidadeTerciaria:'MWh'};

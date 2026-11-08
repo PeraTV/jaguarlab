@@ -1,5 +1,5 @@
 {
-  "version": "0.4.3",
-  "sha256": "aab3a0615ad555d35ddf06eb5e7d2c9cc8fc878c648092432d6688eace7c3946",
-  "note": "Corrige o espaço e a navegação durante a digitação com teclado Android."
+  "version": "0.4.4",
+  "sha256": "2bfd42fe8649a81851c00b2b76f7973a7afd8edb9ec72e8b6b6ae1d1d654c5ec",
+  "note": "Download público direto, progresso, cancelamento e instalação separada."
 }

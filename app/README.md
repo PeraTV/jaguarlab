@@ -96,3 +96,8 @@ Verificação e instalação consultam o arquivo de canal pela API pública de c
 
 ### 0.4.3 — teclado Android
 O app é o único responsável pelo espaço das barras e do teclado (SystemBars.insetsHandling=disable). O preenchimento considera apenas a região ainda encoberta e os espaços tratados são zerados antes de chegar ao WebView. A barra inferior e os botões fixos se ocultam durante a digitação; o campo é trazido à área visível sem alterar seu foco ou conteúdo. Ao fechar o teclado, a navegação retorna.
+
+### 0.4.4 — download Android público
+Download e instalação são etapas separadas. O APK direto da tag pública é a primeira fonte e o arquivo da release é a alternativa. O progresso mostra fase, bytes e porcentagem quando o tamanho é conhecido; há cancelamento e erro local. A conexão aguarda até 8 s e a leitura até 15 s sem receber dados antes de tentar a alternativa. O tempo total de transferência é limitado.
+
+A integridade SHA-256 é obrigatória; tamanho, pacote, assinatura e versão Android também são conferidos. A autorização de instalação é pedida depois do download. O APK verificado pode ser reutilizado, sem baixar novamente após autorizar. A cópia de recuperação é gravada em segundo plano antes da transferência. O download público não exige token; backups continuam individuais.

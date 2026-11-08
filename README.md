@@ -2,9 +2,9 @@
 
 Gestão local de impressão 3D para Android, tablets e Windows.
 
-## Versão 0.4.3
+## Versão 0.4.4
 
-[Baixar Android e Windows](https://github.com/PeraTV/onca3d-atualizacoes/releases/tag/v0.4.3) · [Guia completo](app/README.md)
+[Baixar Android e Windows](https://github.com/PeraTV/onca3d-atualizacoes/releases/tag/v0.4.4) · [Guia completo](app/README.md)
 
 - Duas paletas independentes para fundo e destaque, salvas no aparelho e no backup.
 - Botões Cores, Atualizar e Colaboração visíveis no topo.
@@ -37,3 +37,7 @@ Verificação e instalação leem o canal pela API pública de conteúdo do GitH
 ### Digitação com teclado no Android
 
 Tratamento único do espaço das barras e do teclado, evitando redução duplicada da área útil. A barra inferior e os botões fixos ficam ocultos durante a digitação; o campo é trazido à área visível sem alterar foco ou valor. Ao fechar o teclado, a navegação retorna.
+
+### Download Android público com progresso
+
+Qualquer pessoa pode baixar o JAGUAR LAB sem token. O download começa pelo APK direto da tag pública e usa a release como alternativa. Baixar e Instalar são etapas separadas, com progresso por bytes/porcentagem, cancelamento e erro visível. O APK é conferido por SHA-256, tamanho quando disponível, pacote, assinatura e versão. Após autorizar a instalação no Android, o arquivo conferido é reutilizado. Backups continuam individuais. O Estilo Carioca não teve sua distribuição alterada.

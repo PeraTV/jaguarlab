@@ -1,51 +1,40 @@
 package br.com.onca3d.app;
-
 import android.content.Intent;
+import android.content.pm.*;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
 import androidx.core.content.FileProvider;
-import com.getcapacitor.JSObject;
-import com.getcapacitor.Plugin;
-import com.getcapacitor.PluginCall;
-import com.getcapacitor.PluginMethod;
+import com.getcapacitor.*;
 import com.getcapacitor.annotation.CapacitorPlugin;
 import java.io.*;
 import java.net.*;
-import java.security.MessageDigest;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import org.json.JSONObject;
 
 @CapacitorPlugin(name="OncaUpdater")
 public class OncaUpdaterPlugin extends Plugin {
-  private boolean running=false;
-  private static final String CHANNEL="https://api.github.com/repos/PeraTV/onca3d-atualizacoes/contents/updates/stable.json?ref=main";
-  private HttpURLConnection connect(String address) throws Exception {
-    String current=address;
-    for(int i=0;i<6;i++){
-      URL u=new URL(current);String host=u.getHost();
-      if(!"https".equals(u.getProtocol())||!(host.equals("api.github.com")||host.equals("github.com")||host.equals("raw.githubusercontent.com")||host.equals("release-assets.githubusercontent.com")||host.equals("objects.githubusercontent.com")))throw new IOException("Destino de atualização inválido");
-      HttpURLConnection c=(HttpURLConnection)u.openConnection();c.setConnectTimeout(30000);c.setReadTimeout(60000);c.setInstanceFollowRedirects(false);c.setUseCaches(false);c.setRequestProperty("Cache-Control","no-cache");c.setRequestProperty("User-Agent","JaguarLab");c.setRequestProperty("Accept","application/vnd.github+json");
-      int status=c.getResponseCode();if(status>=300&&status<400){String next=c.getHeaderField("Location");c.disconnect();current=new URL(u,next).toString();continue;}if(status!=200){c.disconnect();throw new IOException("Falha no download: "+status);}return c;
-    }throw new IOException("Redirecionamentos excessivos");
-  }
-  @PluginMethod public void install(PluginCall call){
-    if(running){call.reject("Atualização em andamento");return;}
-    if(Build.VERSION.SDK_INT>=26&&!getContext().getPackageManager().canRequestPackageInstalls()){
-      getActivity().runOnUiThread(()->getActivity().startActivity(new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES,Uri.parse("package:"+getContext().getPackageName()))));
-      call.reject("Autorize o JAGUAR LAB a instalar atualizações nesta tela e toque em Atualizar novamente.");return;
-    }
-    running=true;
-    new Thread(()->{try{
-      HttpURLConnection mc=connect(CHANNEL+"&check="+System.currentTimeMillis());ByteArrayOutputStream buffer=new ByteArrayOutputStream();try(InputStream in=mc.getInputStream()){byte[] b=new byte[8192];int n;while((n=in.read(b))!=-1){if(buffer.size()+n>1000000)throw new IOException("Canal inválido");buffer.write(b,0,n);}}finally{mc.disconnect();}
-      JSONObject channelFile=new JSONObject(buffer.toString("UTF-8"));if(!"base64".equals(channelFile.optString("encoding")))throw new IOException("Canal oficial inválido");JSONObject manifest=new JSONObject(new String(android.util.Base64.decode(channelFile.getString("content"),android.util.Base64.DEFAULT),java.nio.charset.StandardCharsets.UTF_8));if(manifest.optInt("schemaVersion")!=1||!"onca3d".equals(manifest.optString("appId")))throw new IOException("Identidade do canal inválida");if(!manifest.optBoolean("available"))throw new IOException("Nenhuma atualização disponível");
-      JSONObject asset=manifest.getJSONObject("platforms").getJSONObject("android");String address=asset.getString("url"),expected=asset.getString("sha256");
-      if(!address.startsWith("https://github.com/PeraTV/onca3d-atualizacoes/releases/download/v")||!address.endsWith(".apk")||!expected.matches("[a-fA-F0-9]{64}"))throw new IOException("APK inválido");
-      File dir=new File(getContext().getCacheDir(),"updates");dir.mkdirs();File apk=new File(dir,"onca3d-update.apk");MessageDigest digest=MessageDigest.getInstance("SHA-256");HttpURLConnection ac=connect(address);
-      try(InputStream in=ac.getInputStream();OutputStream out=new FileOutputStream(apk)){byte[] b=new byte[65536];long size=0;int n;while((n=in.read(b))!=-1){size+=n;if(size>300L*1024*1024)throw new IOException("APK muito grande");digest.update(b,0,n);out.write(b,0,n);}}finally{ac.disconnect();}
-      StringBuilder actual=new StringBuilder();for(byte b:digest.digest())actual.append(String.format("%02x",b));if(!actual.toString().equalsIgnoreCase(expected)){apk.delete();throw new IOException("Integridade do APK não confere");}
-      Uri uri=FileProvider.getUriForFile(getContext(),getContext().getPackageName()+".fileprovider",apk);
-      Intent intent=new Intent(Intent.ACTION_VIEW);intent.setDataAndType(uri,"application/vnd.android.package-archive");intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-      getActivity().runOnUiThread(()->{try{getActivity().startActivity(intent);call.resolve(new JSObject().put("opened",true));}catch(Exception e){call.reject("Não foi possível abrir o instalador",e);}});
-    }catch(Exception e){call.reject(e.getMessage(),e);}finally{running=false;}}).start();
-  }
+ private volatile boolean running=false;
+ private volatile UpdateTransfer.Cancellation cancellation;
+ private JSObject lastProgress=new JSObject();
+ private static final String CHANNEL="https://api.github.com/repos/PeraTV/onca3d-atualizacoes/contents/updates/stable.json?ref=main";
+ private File target(){return new File(getContext().getCacheDir(),"updates/onca3d-update.apk");}
+ private void progress(String phase,long bytes,long total,int attempt){JSObject event=new JSObject();event.put("phase",phase);event.put("bytes",bytes);event.put("total",total);event.put("attempt",attempt);if("ready".equals(phase))event.put("version",getContext().getSharedPreferences("onca-updater",0).getString("version",""));if(total>0)event.put("percent",Math.min(100,bytes*100/total));lastProgress=event;notifyListeners("updateProgress",event,true);}
+ private JSONObject manifest() throws Exception {
+  HttpURLConnection c=(HttpURLConnection)new URL(CHANNEL+"&check="+System.currentTimeMillis()).openConnection();if(cancellation!=null)cancellation.connection=c;c.setConnectTimeout(8000);c.setReadTimeout(15000);c.setUseCaches(false);c.setRequestProperty("User-Agent","JaguarLab-updater");c.setRequestProperty("Accept","application/vnd.github+json");c.setRequestProperty("Cache-Control","no-cache");
+  try{int status=c.getResponseCode();if(status!=200)throw new IOException("Não foi possível consultar a versão ("+status+").");ByteArrayOutputStream buffer=new ByteArrayOutputStream();try(InputStream in=c.getInputStream()){byte[] b=new byte[8192];int n;while((n=in.read(b))!=-1){if(buffer.size()+n>1000000)throw new IOException("Lista de versões inválida.");buffer.write(b,0,n);}}JSONObject file=new JSONObject(buffer.toString("UTF-8"));if(!"base64".equals(file.optString("encoding")))throw new IOException("Canal inválido.");JSONObject m=new JSONObject(new String(android.util.Base64.decode(file.getString("content"),android.util.Base64.DEFAULT),StandardCharsets.UTF_8));if(m.optInt("schemaVersion")!=1||!"onca3d".equals(m.optString("appId"))||!m.optBoolean("available"))throw new IOException("Canal de atualização indisponível.");return m;}finally{c.disconnect();if(cancellation!=null)cancellation.connection=null;}
+ }
+ @SuppressWarnings("deprecation") private PackageInfo info(String file) throws Exception {int flags=Build.VERSION.SDK_INT>=28?PackageManager.GET_SIGNING_CERTIFICATES:PackageManager.GET_SIGNATURES;return file==null?getContext().getPackageManager().getPackageInfo(getContext().getPackageName(),flags):getContext().getPackageManager().getPackageArchiveInfo(file,flags);}
+ @SuppressWarnings("deprecation") private Signature[] signatures(PackageInfo p){return Build.VERSION.SDK_INT>=28?p.signingInfo.getApkContentsSigners():p.signatures;}
+ private void validate(File apk) throws Exception {PackageInfo installed=info(null),archive=info(apk.getAbsolutePath());if(archive==null||!getContext().getPackageName().equals(archive.packageName))throw new IOException("O arquivo não é um APK do JAGUAR LAB.");Signature[] a=signatures(installed),b=signatures(archive);if(a==null||b==null||a.length!=b.length)throw new IOException("Assinatura do APK inválida.");for(int i=0;i<a.length;i++)if(!Arrays.equals(a[i].toByteArray(),b[i].toByteArray()))throw new IOException("O APK não tem a assinatura desta instalação.");long oldCode=Build.VERSION.SDK_INT>=28?installed.getLongVersionCode():installed.versionCode,newCode=Build.VERSION.SDK_INT>=28?archive.getLongVersionCode():archive.versionCode;if(newCode<=oldCode)throw new IOException("O APK baixado não é mais novo que esta instalação.");}
+ private void recovery(String backup) throws Exception {if(backup==null||backup.length()>150000000)throw new IOException("Cópia de recuperação inválida.");JSONObject data=new JSONObject(backup);if(data.optInt("schemaVersion")!=1||data.optJSONArray("projects")==null||data.optJSONArray("spools")==null)throw new IOException("Cópia de recuperação inválida.");File dir=new File(getContext().getFilesDir(),"recovery");if(!dir.isDirectory()&&!dir.mkdirs())throw new IOException("Não foi possível criar a cópia de recuperação.");File partial=new File(dir,"before-update-"+System.currentTimeMillis()+".json.part");try(OutputStream out=new FileOutputStream(partial)){out.write(backup.getBytes(StandardCharsets.UTF_8));}if(!partial.renameTo(new File(dir,partial.getName().replace(".part",""))))throw new IOException("Não foi possível concluir a cópia de recuperação.");}
+ @PluginMethod public void status(PluginCall call){JSObject result=new JSObject();result.put("progress",lastProgress);result.put("running",running);call.resolve(result);}
+ @PluginMethod public void cancel(PluginCall call){UpdateTransfer.Cancellation token=cancellation;if(token!=null)token.cancel();call.resolve();}
+ @PluginMethod public synchronized void download(PluginCall call){if(running){call.reject("Já existe um download em andamento.");return;}running=true;cancellation=new UpdateTransfer.Cancellation();final UpdateTransfer.Cancellation token=cancellation;new Thread(()->{try{
+  progress("backup",0,0,0);recovery(call.getString("backup"));token.check();progress("channel",0,0,0);JSONObject m=manifest();token.check();String version=m.getJSONObject("release").getString("version");JSONObject asset=m.getJSONObject("platforms").getJSONObject("android");String address=asset.getString("url"),expected=asset.getString("sha256");if(!UpdateTransfer.initial(new URL(address)))throw new IOException("Endereço do APK inválido.");File apk=target();if(!apk.getParentFile().isDirectory()&&!apk.getParentFile().mkdirs())throw new IOException("Armazenamento indisponível.");
+  UpdateTransfer.download(new String[]{UpdateTransfer.direct(version),address},apk,expected,asset.optLong("sizeBytes",0),(phase,bytes,total,attempt)->progress(phase,bytes,total,attempt),token);token.check();progress("verifying",apk.length(),apk.length(),0);validate(apk);getContext().getSharedPreferences("onca-updater",0).edit().putString("sha256",expected).putString("version",version).commit();progress("ready",apk.length(),apk.length(),0);JSObject result=new JSObject();result.put("downloaded",true);result.put("version",version);call.resolve(result);
+ }catch(Exception e){progress(token.cancelled?"cancelled":"error",0,0,0);call.reject(token.cancelled?"Download cancelado.":e.getMessage(),e);}finally{running=false;cancellation=null;}}).start();}
+ @PluginMethod public void install(PluginCall call){new Thread(()->{try{File apk=target();String expected=getContext().getSharedPreferences("onca-updater",0).getString("sha256","");if(!apk.isFile()||expected.isEmpty()||!UpdateTransfer.digest(apk).equalsIgnoreCase(expected))throw new IOException("Baixe e confira a atualização antes de instalar.");validate(apk);getActivity().runOnUiThread(()->{try{JSObject result=new JSObject();if(Build.VERSION.SDK_INT>=26&&!getContext().getPackageManager().canRequestPackageInstalls()){progress("permission",0,0,0);getActivity().startActivity(new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES,Uri.parse("package:"+getContext().getPackageName())));result.put("permissionRequired",true);call.resolve(result);return;}Uri uri=FileProvider.getUriForFile(getContext(),getContext().getPackageName()+".fileprovider",apk);Intent intent=new Intent(Intent.ACTION_VIEW);intent.setDataAndType(uri,"application/vnd.android.package-archive");intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);getActivity().startActivity(intent);progress("installing",0,0,0);result.put("opened",true);call.resolve(result);}catch(Exception e){call.reject("Não foi possível abrir o instalador Android.",e);}});
+ }catch(Exception e){call.reject(e.getMessage(),e);}}).start();}
 }

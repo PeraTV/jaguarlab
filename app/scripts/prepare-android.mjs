@@ -3,6 +3,7 @@ const dir='android/app/src/main';
 const java=`${dir}/java/br/com/onca3d/app`;
 fs.mkdirSync(java,{recursive:true});
 fs.copyFileSync('native/OncaUpdaterPlugin.java',`${java}/OncaUpdaterPlugin.java`);
+fs.copyFileSync('native/UpdateTransfer.java',`${java}/UpdateTransfer.java`);
 fs.writeFileSync(`${java}/MainActivity.java`, `package br.com.onca3d.app;
 import android.os.Bundle;
 import android.view.View;
