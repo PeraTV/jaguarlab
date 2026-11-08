@@ -85,3 +85,8 @@ Os botões **Atualizar** e **Colaboração** aparecem no cabeçalho em celular, 
 
 ### 0.4.0 — personalizar cores
 O botão Cores abre dois controles independentes para fundo e destaque. Há paletas, seletor livre, código hexadecimal e restauração do padrão. A preferência fica em settings.theme, entra no backup e não altera a logo nem as cores dos carretéis.
+
+### 0.4.1 — estimativa com perfil e calibração
+A prévia permite escolher altura de camada, material, preenchimento, número de paredes e velocidade média. Densidade, largura da linha e limite de fluxo ficam em Avançado com orientações. O fluxo médio é aproximado por largura × altura × velocidade, limitado pelo teto volumétrico. Não replica trajetórias, acelerações, tempos mínimos de camada nem os perfis oficiais de impressoras.
+
+A calibração usa tempo e peso do mesmo modelo no fatiador. Seus fatores ficam vinculados ao perfil e à peça; mudar as opções desativa a calibração. Salvar perfil mantém as opções e a referência no projeto e no backup, sem alterar estoque. Para usar os totais do fatiador, importe G-code. Corrigidas as cores do botão em hover/toque e do fundo do rodapé fixo de Nova venda.

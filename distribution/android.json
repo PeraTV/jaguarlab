@@ -1,5 +1,5 @@
 {
-  "version": "0.4.0",
-  "sha256": "ed103f481cee895ab5b0ccb3f706bb24c12cbe52f6977305e8ab79d62c3646da",
-  "note": "JAGUAR LAB: paletas independentes, atalhos visíveis, cálculo livre e lucro configurável."
+  "version": "0.4.1",
+  "sha256": "7f62317ed702734cc5d5c7eccde5d17bfe9282aa0f83d8e30fb1c69a2fce1708",
+  "note": "Correções das cores e estimativa com perfil de camada e calibração por peça."
 }
