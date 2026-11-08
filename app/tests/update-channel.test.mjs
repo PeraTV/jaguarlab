@@ -1,0 +1,7 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {decodeJsonResponse,availableUpdate} from '../src/update-channel.mjs';
+const manifest={schemaVersion:1,appId:'onca3d',available:true,release:{version:'0.2.0',notes:'Atualização'},platforms:{android:{url:'apk'}}};
+test('Android reconhece a atualização quando o GitHub retorna JSON como texto',()=>{assert.equal(availableUpdate(JSON.stringify(manifest),'0.1.0').version,'0.2.0');assert.equal(availableUpdate('\uFEFF'+JSON.stringify(manifest),'0.1.0').version,'0.2.0');});
+test('resposta JSON já interpretada e versão instalada correta preservam a comparação',()=>{assert.equal(availableUpdate(manifest,'0.1.0').version,'0.2.0');assert.equal(availableUpdate(manifest,'0.2.0'),null);assert.equal(availableUpdate({...manifest,release:{version:'0.10.0'}},'0.2.1').version,'0.10.0');});
+test('resposta inválida nunca é apresentada como aplicativo atualizado',()=>{for(const data of ['<html>Falha</html>','{}','null',{},[],{...manifest,release:{version:'invalida'}}])assert.throws(()=>availableUpdate(data,'0.1.0'));});
+test('decodifica também cidades e demais respostas nativas sem mudar objetos válidos',()=>{const data=[{nome:'Rio de Janeiro'}];assert.deepEqual(decodeJsonResponse(JSON.stringify(data)),data);assert.equal(decodeJsonResponse(data),data);assert.equal(availableUpdate({...manifest,available:false,release:null},'0.1.0'),null);});

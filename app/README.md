@@ -1,6 +1,10 @@
-# ONÇA 3D — prévia 0.2.0
+# JAGUAR LAB — prévia 0.2.1
 
 Aplicativo local de gestão para impressão 3D, com identidade amarela e preta. Projeto em `F:\Projetos\Onca3D` no computador do mantenedor.
+
+## Correção 0.2.1
+
+Corrige a leitura do canal de atualização no Android quando o GitHub retorna JSON como texto. A consulta evita cache antigo, valida a resposta e mostra um resultado persistente. Versões anteriores afetadas precisam receber este APK por instalação por cima uma vez; não desinstale. Dados e assinatura preservados.
 
 ## Novidades da versão 0.2.0
 
@@ -66,3 +70,12 @@ O mantenedor publica os instaladores em Releases e atualiza `updates/stable.json
 Testes automatizados cobrem cálculo, baixa de estoque, consumo duplicado, falhas, estornos, vendas parciais, integridade de backup, senha incorreta, transações, tarifas e restrição dos endereços de atualização. O fluxo de cadastro e produção foi conferido no navegador.
 
 Esta é uma prévia para avaliação. A assinatura Windows não usa certificado comercial; o sistema pode pedir confirmação do editor. A instalação Android deve ser confirmada no aparelho. Ainda é necessário testar em aparelhos físicos e testar o ciclo de atualização entre duas versões instaladas. Não há controle direto da impressora, fatiamento completo nem sincronização simultânea nesta prévia.
+
+## Versão 0.3.0 — JAGUAR LAB
+O nome exibido mudou; as identidades internas e os caminhos locais foram mantidos para preservar registros e atualizações.
+
+Na calculadora, o projeto é opcional. Você pode informar preço por kg, peso e tempo diretamente, sem objeto ou estoque cadastrado. O campo de lucro está visível e permite margem sobre a venda ou acréscimo sobre o custo. Custos de máquina, trabalho e embalagem devem ser incluídos conforme sua operação.
+
+Depois de fatiar no Anycubic/Orca/Bambu/Prusa, exporte um G-code de até 20 MB e use **Importar dados do fatiador**. O app lê os totais presentes no cabeçalho e mostra as trajetórias compatíveis por camadas. Não executa um fatiador completo; STL isolado oferece somente aproximação geométrica opcional. Quando o arquivo não informa gramas ou tempo, o dado ausente continua disponível para preenchimento manual. G-code binário (.bgcode), arquivos compactados e comandos proprietários podem exigir exportação como G-code de texto. A prévia simplifica arquivos grandes e alguns arcos; essa simplificação não altera os totais lidos.
+
+O APK corrige o recorte do ícone e aplica a área segura das barras, câmera e teclado do Android. A consulta de atualização foi corrigida para o JSON servido pelo GitHub. Instale por cima da versão antiga uma vez, sem desinstalar, se o verificador antigo não oferecer a atualização.

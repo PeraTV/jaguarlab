@@ -1,5 +1,5 @@
 {
-  "version": "0.2.0",
-  "sha256": "36f5f18982231b7dba12a30a7e4d56b50976c16d454a39d2d747c79f1dabdeeb",
-  "note": "APK assinado com a mesma chave exclusiva do ONÇA 3D. Chaves e senhas não estão no repositório."
+  "version": "0.3.0",
+  "sha256": "7d532fabb68fceea5598620298d88acd14de16ce180836558e67e4e9f7ab3908",
+  "note": "JAGUAR LAB: cálculo livre, lucro configurável, leitura G-code, ícone e área segura Android corrigidos."
 }

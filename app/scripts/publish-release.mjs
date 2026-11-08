@@ -13,13 +13,14 @@ const apk=path.resolve(`../distribution/Onca3D-${version}-Android.apk`);
 const apkHash=hash(apk);
 if(apkHash!==android.sha256)throw Error('O APK não corresponde ao hash validado localmente.');
 const exeHash=hash(exe),tag=`v${version}`;
-const notes=`ONÇA 3D ${version} — nova interface e modelos 3D.\n\nVisual preto e amarelo refeito seguindo o conceito aprovado, novos carretéis, logo no perfil e navegação compacta. Importação local de STL/3MF com prévia 3D, rotação e zoom; arquivos incluídos no backup. Tempo e material aproveitados quando o 3MF traz dados de fatiamento. Estimativa geométrica opcional, claramente aproximada, para modelos não fatiados.\n\nTutoriais para cada função, guia de configuração do backup individual, Light identificada na lista de energia, meta mensal e menu Colaboração com o QR Code informado pelo criador.\n\nInstale por cima, sem desinstalar. Os registros e a assinatura Android são preservados. Faça backup antes de atualizar. Modelos: até 20 MB e 250 mil triângulos; 3MF pode ter extensões não suportadas. A estimativa geométrica não substitui o fatiador. A tarifa ANEEL continua sendo uma referência sem impostos e bandeira. Não há sincronização automática entre aparelhos.\n\nTestes automatizados e conferência de telas em tamanhos de celular, tablet e PC realizados. Teste em aparelho físico recomendado. O instalador Windows não tem certificado comercial.\n\nGuia: https://github.com/${repo}/blob/main/app/README.md\n`;
+const notes=`JAGUAR LAB ${version} — calculadora e Android corrigidos.\n\nAgora o percentual de lucro fica visível, com margem sobre a venda ou acréscimo sobre o custo. É possível calcular sem projeto, arquivo ou carretel, informando o preço por kg. G-code exportado do fatiador permite ler tempo e gramas e visualizar trajetórias por camadas. Esses valores continuam sendo estimativas do fatiador.\n\nNome alterado para JAGUAR LAB, mantendo a logo escolhida. Corrigidos o ícone amarelo no Android, o cabeçalho sob a barra de notificações e a consulta de atualizações. Dados locais, backups e assinatura foram preservados.\n\nQuem usa uma versão anterior com falha na consulta deve instalar este APK por cima uma vez, sem desinstalar.\n\nGuia: https://github.com/${repo}/blob/main/app/README.md\n`;
+
 fs.writeFileSync('release/NOTAS.md',notes);
 fs.writeFileSync('release/SHA256SUMS.txt',`${exeHash}  ${path.basename(exe)}\n${apkHash}  ${path.basename(apk)}\n`);
 function gh(args,options={}){return execFileSync('gh',args,{stdio:'inherit',...options});}
 let existing=null;try{existing=JSON.parse(gh(['release','view',tag,'--json','isDraft'],{encoding:'utf8',stdio:['ignore','pipe','pipe']}));}catch{}
 if(existing&&!existing.isDraft)throw Error('Esta versão já foi publicada. Aumente a versão antes de distribuir novos arquivos.');
-if(!existing)gh(['release','create',tag,'--draft','--prerelease','--target',process.env.GITHUB_SHA,'--title',`ONÇA 3D ${version} — prévia para avaliação`,'--notes-file','release/NOTAS.md']);
+if(!existing)gh(['release','create',tag,'--draft','--prerelease','--target',process.env.GITHUB_SHA,'--title',`JAGUAR LAB ${version} — prévia para avaliação`,'--notes-file','release/NOTAS.md']);
 gh(['release','upload',tag,exe,apk,path.resolve('release/SHA256SUMS.txt'),'--clobber']);
 gh(['release','edit',tag,'--draft=false','--prerelease','--notes-file','release/NOTAS.md']);
 const asset=name=>`https://github.com/${repo}/releases/download/${tag}/${name}`;
@@ -27,5 +28,5 @@ fs.writeFileSync('../updates/stable.json',JSON.stringify({schemaVersion:1,appId:
 execFileSync('git',['config','user.name','github-actions[bot]']);
 execFileSync('git',['config','user.email','41898282+github-actions[bot]@users.noreply.github.com']);
 execFileSync('git',['add','../updates/stable.json']);
-execFileSync('git',['commit','-m',`Publica canal de atualização ONÇA 3D ${version}`],{stdio:'inherit'});
+execFileSync('git',['commit','-m',`Publica canal de atualização JAGUAR LAB ${version}`],{stdio:'inherit'});
 execFileSync('git',['push'],{stdio:'inherit'});

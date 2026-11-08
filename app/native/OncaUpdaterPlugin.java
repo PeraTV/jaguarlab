@@ -24,7 +24,7 @@ public class OncaUpdaterPlugin extends Plugin {
     for(int i=0;i<6;i++){
       URL u=new URL(current);String host=u.getHost();
       if(!"https".equals(u.getProtocol())||!(host.equals("github.com")||host.equals("raw.githubusercontent.com")||host.equals("release-assets.githubusercontent.com")||host.equals("objects.githubusercontent.com")))throw new IOException("Destino de atualização inválido");
-      HttpURLConnection c=(HttpURLConnection)u.openConnection();c.setConnectTimeout(30000);c.setReadTimeout(60000);c.setInstanceFollowRedirects(false);c.setRequestProperty("User-Agent","Onca3D");
+      HttpURLConnection c=(HttpURLConnection)u.openConnection();c.setConnectTimeout(30000);c.setReadTimeout(60000);c.setInstanceFollowRedirects(false);c.setUseCaches(false);c.setRequestProperty("Cache-Control","no-cache");c.setRequestProperty("User-Agent","Onca3D");
       int status=c.getResponseCode();if(status>=300&&status<400){String next=c.getHeaderField("Location");c.disconnect();current=new URL(u,next).toString();continue;}if(status!=200){c.disconnect();throw new IOException("Falha no download: "+status);}return c;
     }throw new IOException("Redirecionamentos excessivos");
   }
@@ -36,7 +36,7 @@ public class OncaUpdaterPlugin extends Plugin {
     }
     running=true;
     new Thread(()->{try{
-      HttpURLConnection mc=connect(CHANNEL);ByteArrayOutputStream buffer=new ByteArrayOutputStream();try(InputStream in=mc.getInputStream()){byte[] b=new byte[8192];int n;while((n=in.read(b))!=-1){if(buffer.size()+n>1000000)throw new IOException("Canal inválido");buffer.write(b,0,n);}}finally{mc.disconnect();}
+      HttpURLConnection mc=connect(CHANNEL+"?check="+System.currentTimeMillis());ByteArrayOutputStream buffer=new ByteArrayOutputStream();try(InputStream in=mc.getInputStream()){byte[] b=new byte[8192];int n;while((n=in.read(b))!=-1){if(buffer.size()+n>1000000)throw new IOException("Canal inválido");buffer.write(b,0,n);}}finally{mc.disconnect();}
       JSONObject manifest=new JSONObject(buffer.toString("UTF-8"));if(!manifest.optBoolean("available"))throw new IOException("Nenhuma atualização disponível");
       JSONObject asset=manifest.getJSONObject("platforms").getJSONObject("android");String address=asset.getString("url"),expected=asset.getString("sha256");
       if(!address.startsWith("https://github.com/PeraTV/onca3d-atualizacoes/releases/download/v")||!address.endsWith(".apk")||!expected.matches("[a-fA-F0-9]{64}"))throw new IOException("APK inválido");

@@ -1,1 +1,8 @@
-{"appId":"br.com.onca3d.app","appName":"ONÇA 3D","webDir":"dist","server":{"androidScheme":"https"}}
+{
+  "appId": "br.com.onca3d.app",
+  "appName": "JAGUAR LAB",
+  "webDir": "dist",
+  "server": {
+    "androidScheme": "https"
+  }
+}

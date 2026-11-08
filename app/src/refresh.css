@@ -7,3 +7,5 @@
 .demo-banner{font-size:11px;text-align:center;color:#d5c787;background:#292516;padding:8px 12px;border:1px solid #524929;border-radius:7px;margin-bottom:17px}
 
 @media(max-width:680px){.primary-footer{position:fixed;bottom:76px;left:16px;right:16px;background:#0b0c0ef5;padding:9px 0;margin:0;z-index:50;backdrop-filter:blur(8px)}.content:has(.primary-footer){padding-bottom:98px}.reference-calculator{display:flex!important;flex-direction:column}.reference-calculator>.stack{display:contents}.reference-calculator .calculator-inputs{order:0;width:100%}.reference-calculator>.calc-result{order:1;width:100%}.reference-calculator .model-project-panel{order:2;width:100%}}
+
+.profit-controls{border-top:1px solid #36383e;padding-top:20px;margin-top:20px}.profit-controls h2{margin-bottom:18px}.slicer-result{margin:18px 0;padding:16px;border:1px solid #414349;border-radius:10px}.slicer-result>strong{overflow-wrap:anywhere}.brand{font-size:20px}

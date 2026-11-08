@@ -1,10 +1,10 @@
 {
   "name": "onca3d",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "description": "Gestão local de impressão 3D",
-  "author": "ONÇA 3D",
+  "author": "JAGUAR LAB",
   "main": "electron/main.cjs",
   "scripts": {
     "dev": "vite --host 127.0.0.1 --configLoader runner",
@@ -37,7 +37,7 @@
   },
   "build": {
     "appId": "br.com.onca3d.app",
-    "productName": "ONÇA 3D",
+    "productName": "JAGUAR LAB",
     "directories": {
       "output": "release"
     },
