@@ -6,12 +6,14 @@ fs.copyFileSync('native/OncaUpdaterPlugin.java',`${java}/OncaUpdaterPlugin.java`
 fs.writeFileSync(`${java}/MainActivity.java`, `package br.com.onca3d.app;
 import android.os.Bundle;
 import android.view.View;
+import android.graphics.Rect;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowCompat;
 import androidx.core.view.WindowInsetsCompat;
 import com.getcapacitor.BridgeActivity;
 public class MainActivity extends BridgeActivity {
+ private Boolean lastKeyboardVisible = null;
  @Override public void onCreate(Bundle state) {
   registerPlugin(OncaUpdaterPlugin.class);
   super.onCreate(state);
@@ -23,8 +25,30 @@ public class MainActivity extends BridgeActivity {
   ViewCompat.setOnApplyWindowInsetsListener(content, (view, windowInsets) -> {
    Insets bars = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout());
    Insets keyboard = windowInsets.getInsets(WindowInsetsCompat.Type.ime());
-   view.setPadding(bars.left, bars.top, bars.right, Math.max(bars.bottom, keyboard.bottom));
-   return WindowInsetsCompat.CONSUMED;
+   boolean keyboardVisible = windowInsets.isVisible(WindowInsetsCompat.Type.ime());
+   Rect visibleFrame = new Rect();
+   view.getWindowVisibleDisplayFrame(visibleFrame);
+   int[] position = new int[2];
+   view.getLocationOnScreen(position);
+   int imePadding = keyboardVisible ? keyboard.bottom : 0;
+   if (keyboardVisible && view.getHeight() > 0 && visibleFrame.height() > 0) {
+    imePadding = Math.min(keyboard.bottom, Math.max(0, position[1] + view.getHeight() - visibleFrame.bottom));
+   }
+   view.setPadding(bars.left, bars.top, bars.right, Math.max(bars.bottom, imePadding));
+   if (lastKeyboardVisible == null || lastKeyboardVisible.booleanValue() != keyboardVisible) {
+    lastKeyboardVisible = keyboardVisible;
+    if (getBridge() != null) getBridge().getWebView().post(() -> getBridge().getWebView().evaluateJavascript(
+     "window.dispatchEvent(new CustomEvent('jaguar-keyboard',{detail:{visible:" + keyboardVisible + "}}));", null));
+   }
+   int handled = WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.displayCutout() | WindowInsetsCompat.Type.ime();
+   return new WindowInsetsCompat.Builder(windowInsets).setInsets(handled, Insets.NONE).build();
+  });
+  content.getViewTreeObserver().addOnGlobalLayoutListener(new android.view.ViewTreeObserver.OnGlobalLayoutListener() {
+   private int previousBottom = -1;
+   @Override public void onGlobalLayout() {
+    Rect frame = new Rect(); content.getWindowVisibleDisplayFrame(frame);
+    if (previousBottom != frame.bottom) { previousBottom = frame.bottom; ViewCompat.requestApplyInsets(content); }
+   }
   });
   ViewCompat.requestApplyInsets(content);
  }
@@ -49,3 +73,9 @@ for(const name of ['ic_launcher','ic_launcher_round']){
 
 const strings=`${dir}/res/values/strings.xml`;
 fs.writeFileSync(strings,fs.readFileSync(strings,'utf8').replace(/(<string name="(?:app_name|title_activity_main)">)[^<]*/g,'$1JAGUAR LAB'));
+
+const activityManifest=`${dir}/AndroidManifest.xml`;
+let activityXml=fs.readFileSync(activityManifest,'utf8');
+activityXml=activityXml.replace(/\s+android:windowSoftInputMode="[^"]*"/g,'');
+activityXml=activityXml.replace('<activity','<activity android:windowSoftInputMode="adjustResize"');
+fs.writeFileSync(activityManifest,activityXml);

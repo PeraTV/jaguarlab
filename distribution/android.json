@@ -1,5 +1,5 @@
 {
-  "version": "0.4.2",
-  "sha256": "2e1010b91aff5a855f6cf53329971a5706c30493865f84e491157aeb790c0dd9",
-  "note": "Consulta de atualizações pela fonte oficial atualizada no Android e Windows."
+  "version": "0.4.3",
+  "sha256": "aab3a0615ad555d35ddf06eb5e7d2c9cc8fc878c648092432d6688eace7c3946",
+  "note": "Corrige o espaço e a navegação durante a digitação com teclado Android."
 }

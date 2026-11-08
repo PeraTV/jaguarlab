@@ -2,9 +2,9 @@
 
 Gestão local de impressão 3D para Android, tablets e Windows.
 
-## Versão 0.4.2
+## Versão 0.4.3
 
-[Baixar Android e Windows](https://github.com/PeraTV/onca3d-atualizacoes/releases/tag/v0.4.2) · [Guia completo](app/README.md)
+[Baixar Android e Windows](https://github.com/PeraTV/onca3d-atualizacoes/releases/tag/v0.4.3) · [Guia completo](app/README.md)
 
 - Duas paletas independentes para fundo e destaque, salvas no aparelho e no backup.
 - Botões Cores, Atualizar e Colaboração visíveis no topo.
@@ -33,3 +33,7 @@ Cores dos botões e do rodapé fixo corrigidas. A estimativa STL oferece altura 
 ### Consulta de versões corrigida
 
 Verificação e instalação leem o canal pela API pública de conteúdo do GitHub, sem depender da cópia antiga do endereço raw. Não requer token pessoal. Falhas e limites de consulta não são apresentados como aplicativo atualizado. Se a versão anterior ainda consultar a lista antiga, instale o APK novo por cima uma vez, sem desinstalar.
+
+### Digitação com teclado no Android
+
+Tratamento único do espaço das barras e do teclado, evitando redução duplicada da área útil. A barra inferior e os botões fixos ficam ocultos durante a digitação; o campo é trazido à área visível sem alterar foco ou valor. Ao fechar o teclado, a navegação retorna.

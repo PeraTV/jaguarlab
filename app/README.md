@@ -93,3 +93,6 @@ A calibração usa tempo e peso do mesmo modelo no fatiador. Seus fatores ficam 
 
 ### 0.4.2 — consulta de atualização
 Verificação e instalação consultam o arquivo de canal pela API pública de conteúdo do GitHub, decodificando o JSON retornado em Base64. A consulta não depende da cópia em cache do domínio raw. Não usa token pessoal e respeita falhas/limites da API: se a consulta falhar, não informa que o app está atualizado. A validação do endereço oficial dos instaladores e do SHA-256 continua ativa.
+
+### 0.4.3 — teclado Android
+O app é o único responsável pelo espaço das barras e do teclado (SystemBars.insetsHandling=disable). O preenchimento considera apenas a região ainda encoberta e os espaços tratados são zerados antes de chegar ao WebView. A barra inferior e os botões fixos se ocultam durante a digitação; o campo é trazido à área visível sem alterar seu foco ou conteúdo. Ao fechar o teclado, a navegação retorna.
