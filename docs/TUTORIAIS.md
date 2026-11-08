@@ -2,7 +2,7 @@
 
 Telas demonstrativas e dados fictícios. Nenhum token real aparece nos vídeos.
 
-[Assistir ao guia completo — 3min53](https://raw.githubusercontent.com/PeraTV/jaguarlab/v0.5.4/guides/tutorial-completo.mp4)
+[Assistir ao guia completo — 3min53](https://raw.githubusercontent.com/PeraTV/jaguarlab/v0.5.5/guides/tutorial-completo.mp4)
 
 ## Capítulos e transcrição
 
@@ -92,7 +92,7 @@ Na aba Tutoriais, pesquise a função que deseja usar. Os textos funcionam sem i
 
 ## Backup privado e token
 
-[Assistir ao tutorial atualizado](https://raw.githubusercontent.com/PeraTV/jaguarlab/v0.5.4/guides/tutorial-backup.mp4)
+[Assistir ao tutorial atualizado](https://raw.githubusercontent.com/PeraTV/jaguarlab/v0.5.5/guides/tutorial-backup.mp4)
 
 ### 1. Backup na sua própria conta
 
@@ -189,3 +189,15 @@ A lista mostra até 100 cópias completas recentes. Cópias anteriores à introd
 Sem Manter conectado, o token fica somente na sessão. Se você marcar Manter conectado neste aparelho e tocar em Salvar acesso, repositório, token e senha do backup ficam cifrados com a proteção local do sistema: Android Keystore no Android e safeStorage/DPAPI no Windows. Não entram nos backups. Desconectar remove esse acesso salvo. No navegador, não há persistência de credenciais. A opção não renova tokens vencidos ou revogados.
 
 Em Expiration, escolha uma data ou **No expiration**, quando disponível. Com data, substitua o token quando vencer. No expiration significa sem vencimento programado, não acesso garantido para sempre: o token pode ser revogado e o GitHub pode removê-lo após um ano sem uso. Veja [validade e revogação de tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/token-expiration-and-revocation). Manter conectado não renova o token.
+
+## macOS e Linux (0.5.5)
+
+- Mac Intel: **macOS-x64.dmg**. Mac com chip Apple M1 ou posterior: **macOS-arm64.dmg**. Abra o DMG e arraste JAGUAR LAB para Aplicativos. Para atualizar, feche o app e substitua a cópia anterior. Os dados ficam fora do aplicativo.
+- O pacote Mac usa assinatura ad hoc, sem certificado Developer ID nem notarização da Apple. O macOS pode bloquear a primeira abertura e exigir sua autorização nas opções de segurança do sistema. Não é uma versão da App Store. Não desative as proteções globais do sistema.
+- Linux 64 bits (x86_64): **DEB** para Debian/Ubuntu/Mint ou **AppImage** para outras distribuições compatíveis. No AppImage, habilite a permissão de execução nas propriedades do arquivo. O DEB abre no gerenciador de pacotes e pode pedir a senha de administrador para instalar. Não execute o app como root.
+- O botão Atualizar baixa e confere o instalador correto. No Mac, confirme a substituição em Aplicativos. No Linux, conclua pelo gerenciador de pacotes e reabra. Quem usa AppImage pode baixar a nova AppImage na página de versões e substituir a anterior.
+- Manter conectado usa o Keychain do macOS ou um chaveiro seguro do Linux (libsecret/KWallet). Se o Linux não oferecer chaveiro protegido, a opção fica indisponível e o acesso funciona somente na sessão; o app não grava o token em texto simples.
+- Dados permanecem locais, sem servidor próprio. Para transferir Android/Windows/Mac/Linux, envie e importe o backup com a mesma senha; a importação substitui o destino e não mescla bases. Os modelos 3D originais devem ser transferidos separadamente.
+- Os instaladores são compilados no GitHub Actions em máquinas dos respectivos sistemas. Ainda não foram validados em um Mac/Linux físico do usuário. Arquiteturas Linux ARM não são incluídas nesta prévia.
+
+Referências: [Electron safeStorage](https://github.com/electron/electron/blob/main/docs/api/safe-storage.md), [formatos de instalação](https://www.electron.build/v26/docs/targets/).

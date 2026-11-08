@@ -1,33 +1,22 @@
-import fs from 'node:fs';
-import path from 'node:path';
-import crypto from 'node:crypto';
-import {execFileSync} from 'node:child_process';
-const repo=process.env.GH_REPO;
-if(repo!=='PeraTV/jaguarlab')throw Error('Canal de distribuição inesperado.');
-const {version}=JSON.parse(fs.readFileSync('package.json','utf8'));
-const android=JSON.parse(fs.readFileSync('../distribution/android.json','utf8'));
-if(android.version!==version)throw Error('Gere e assine o APK desta versão antes de publicar.');
+import fs from 'node:fs';import path from 'node:path';import crypto from 'node:crypto';import {execFileSync} from 'node:child_process';
+const repo=process.env.GH_REPO;if(repo!=='PeraTV/jaguarlab')throw Error('Canal inesperado.');
+const {version}=JSON.parse(fs.readFileSync('package.json','utf8')),android=JSON.parse(fs.readFileSync('../distribution/android.json','utf8'));
+if(android.version!==version)throw Error('Versão Android divergente.');
 const hash=file=>crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
-const exe=path.resolve(`release/JaguarLab-${version}-Setup.exe`);
-const apk=path.resolve(`../distribution/JaguarLab-${version}-Android.apk`);
-const apkHash=hash(apk);
-if(apkHash!==android.sha256)throw Error('O APK não corresponde ao hash validado localmente.');
-const exeHash=hash(exe),tag=`v${version}`;
-const legacyApk=path.resolve(`release/Onca3D-${version}-Android.apk`);fs.copyFileSync(apk,legacyApk);
-const notes=`JAGUAR LAB ${version} — tutoriais mais rápidos.\n\nGuia completo com 21 capítulos em cerca de 3min53 e tutorial de backup em cerca de 3min13. Reprodução 20% mais rápida, preservando o tom da voz. Legendas, índice e capítulos foram sincronizados ao novo ritmo.\n\nInclui orientação de validade e No expiration, Manter conectado com proteção do Android/Windows e transferência de backup entre celular, PC e tablet. Mantém o histórico de cópias e a correção do instalador ocupado no Windows.\n\nInstale por cima, sem desinstalar. Faça backup antes. Downloads principais JaguarLab; links legados mantidos para compatibilidade. Guia: https://github.com/${repo}/blob/main/docs/GUIA.md\n`;
-
-fs.writeFileSync('release/NOTAS.md',notes);
-fs.writeFileSync('release/SHA256SUMS.txt',`${exeHash}  ${path.basename(exe)}\n${apkHash}  ${path.basename(apk)}\n`);
-function gh(args,options={}){return execFileSync('gh',args,{stdio:'inherit',...options});}
-let existing=null;try{existing=JSON.parse(gh(['release','view',tag,'--json','isDraft'],{encoding:'utf8',stdio:['ignore','pipe','pipe']}));}catch{}
-if(existing&&!existing.isDraft)throw Error('Esta versão já foi publicada. Aumente a versão antes de distribuir novos arquivos.');
-if(!existing)gh(['release','create',tag,'--draft','--prerelease','--target',process.env.GITHUB_SHA,'--title',`JAGUAR LAB ${version} — prévia para avaliação`,'--notes-file','release/NOTAS.md']);
-gh(['release','upload',tag,exe,apk,legacyApk,path.resolve('release/SHA256SUMS.txt'),'--clobber']);
+const files={windows:`release/JaguarLab-${version}-Setup.exe`,android:`../distribution/JaguarLab-${version}-Android.apk`,macos_x64:`release/JaguarLab-${version}-macOS-x64.dmg`,macos_arm64:`release/JaguarLab-${version}-macOS-arm64.dmg`,linux_x64:`release/JaguarLab-${version}-Linux-x64.deb`,linux_appimage_x64:`release/JaguarLab-${version}-Linux-x64.AppImage`};
+for(const file of Object.values(files))if(!fs.statSync(file).size)throw Error('Instalador vazio: '+file);
+if(hash(files.android)!==android.sha256)throw Error('APK divergente.');
+const legacy=`release/Onca3D-${version}-Android.apk`;fs.copyFileSync(files.android,legacy);
+const tag=`v${version}`,asset=name=>`https://github.com/${repo}/releases/download/${tag}/${name}`;
+const platforms=Object.fromEntries(Object.entries(files).map(([key,file])=>[key,{url:asset(path.basename(file)),canonicalUrl:asset(path.basename(file)),sha256:hash(file),sizeBytes:fs.statSync(file).size}]));
+platforms.windows.url=platforms.windows.url.replace('/jaguarlab/','/onca3d-atualizacoes/');platforms.android.url=asset(path.basename(legacy)).replace('/jaguarlab/','/onca3d-atualizacoes/');
+const notes=`JAGUAR LAB ${version} — Android, Windows, macOS e Linux.\n\nMac Intel: macOS-x64.dmg. Mac Apple Silicon: macOS-arm64.dmg. Linux 64 bits: DEB ou AppImage. Mac usa assinatura ad hoc, sem certificado Developer ID nem notarização Apple; o sistema pode exigir autorização manual. Não houve teste em Mac/Linux físico do usuário.\n\nAtualizações selecionam o instalador correto. No Mac, abra o DMG e substitua o app em Aplicativos após fechá-lo. Linux: confirme o DEB no gerenciador de pacotes e reabra. AppImage: marque como executável e substitua a cópia anterior.\n\nAcesso salvo usa o chaveiro do macOS ou chaveiro protegido do Linux, quando disponível. Sem chaveiro seguro, use o token somente na sessão. Dados e backups são compatíveis entre plataformas; importar substitui a base do destino.\n\nInstale por cima, sem desinstalar. Faça backup antes. Guia: https://github.com/${repo}/blob/main/docs/INSTALACAO.md\n`;
+fs.writeFileSync('release/NOTAS.md',notes);fs.writeFileSync('release/SHA256SUMS.txt',Object.values(files).map(file=>`${hash(file)}  ${path.basename(file)}`).join('\n')+'\n');
+const gh=(args,options={})=>execFileSync('gh',args,{stdio:'inherit',...options});let existing;
+try{existing=JSON.parse(gh(['release','view',tag,'--json','isDraft'],{encoding:'utf8',stdio:['ignore','pipe','pipe']}));}catch{}
+if(existing&&!existing.isDraft)throw Error('Versão já publicada.');
+if(!existing)gh(['release','create',tag,'--draft','--prerelease','--target',process.env.GITHUB_SHA,'--title',`JAGUAR LAB ${version} — multiplataforma`,'--notes-file','release/NOTAS.md']);
+gh(['release','upload',tag,...Object.values(files),legacy,'release/SHA256SUMS.txt','--clobber']);
 gh(['release','edit',tag,'--draft=false','--prerelease','--notes-file','release/NOTAS.md']);
-const asset=name=>`https://github.com/${repo}/releases/download/${tag}/${name}`;
-fs.writeFileSync('../updates/stable.json',JSON.stringify({schemaVersion:1,appId:'onca3d',channel:'preview',available:true,status:'preview',release:{version,notes:'Prévia para avaliação. Faça backup antes de atualizar.',publishedAt:new Date().toISOString()},platforms:{windows:{url:asset(path.basename(exe)).replace('/PeraTV/jaguarlab/','/PeraTV/onca3d-atualizacoes/'),canonicalUrl:asset(path.basename(exe)),sha256:exeHash,sizeBytes:fs.statSync(exe).size},android:{url:asset(path.basename(legacyApk)).replace('/PeraTV/jaguarlab/','/PeraTV/onca3d-atualizacoes/'),canonicalUrl:asset(path.basename(apk)),sha256:apkHash,sizeBytes:fs.statSync(apk).size}}},null,2)+'\n');
-execFileSync('git',['config','user.name','github-actions[bot]']);
-execFileSync('git',['config','user.email','41898282+github-actions[bot]@users.noreply.github.com']);
-execFileSync('git',['add','../updates/stable.json']);
-execFileSync('git',['commit','-m',`Publica canal de atualização JAGUAR LAB ${version}`],{stdio:'inherit'});
-execFileSync('git',['push'],{stdio:'inherit'});
+fs.writeFileSync('../updates/stable.json',JSON.stringify({schemaVersion:1,appId:'onca3d',channel:'preview',available:true,status:'preview',release:{version,notes:'Versão multiplataforma. Faça backup antes de atualizar.',publishedAt:new Date().toISOString()},platforms},null,2)+'\n');
+execFileSync('git',['config','user.name','github-actions[bot]']);execFileSync('git',['config','user.email','41898282+github-actions[bot]@users.noreply.github.com']);execFileSync('git',['add','../updates/stable.json']);execFileSync('git',['commit','-m',`Publica canal JAGUAR LAB ${version}`]);execFileSync('git',['push']);

@@ -1,4 +1,4 @@
-name: Publicar JAGUAR LAB Android e Windows
+name: Publicar JAGUAR LAB em todas as plataformas
 on:
   workflow_dispatch:
   push:
@@ -10,8 +10,21 @@ concurrency:
   group: publicar-onca3d
   cancel-in-progress: false
 jobs:
-  publicar:
-    runs-on: windows-latest
+  compilar:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            name: windows
+            command: npm run desktop:build
+          - os: macos-latest
+            name: macos
+            command: npm run desktop:mac
+          - os: ubuntu-latest
+            name: linux
+            command: npm run desktop:linux
+    runs-on: ${{ matrix.os }}
     timeout-minutes: 30
     defaults:
       run:
@@ -25,11 +38,36 @@ jobs:
           cache-dependency-path: app/package-lock.json
       - run: npm ci
       - run: npm test
-      - run: npm run desktop:build
+      - run: ${{ matrix.command }}
         env:
           CSC_IDENTITY_AUTO_DISCOVERY: 'false'
-      - name: Publicar arquivos e canal de atualização
-        run: node scripts/publish-release.mjs
+      - uses: actions/upload-artifact@v4
+        with:
+          name: installers-${{ matrix.name }}
+          path: |
+            app/release/JaguarLab-*.exe
+            app/release/JaguarLab-*.dmg
+            app/release/JaguarLab-*.deb
+            app/release/JaguarLab-*.AppImage
+          if-no-files-found: error
+          retention-days: 5
+  publicar:
+    needs: compilar
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: installers-*
+          path: app/release
+          merge-multiple: true
+      - run: node scripts/publish-release.mjs
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
