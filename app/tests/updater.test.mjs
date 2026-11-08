@@ -1,0 +1,4 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import updater from '../electron/updater.cjs';
+test('atualizações usam comparação numérica de versão',()=>{assert.equal(updater.newer('0.10.0','0.9.9'),true);assert.equal(updater.newer('0.1.0','0.1.0'),false);assert.equal(updater.newer('0.0.9','0.1.0'),false);assert.equal(updater.newer('evil','0.1.0'),false);});
+test('instaladores exigem hash e endereço do canal oficial',()=>{const valid={sha256:'a'.repeat(64),url:'https://github.com/PeraTV/onca3d-atualizacoes/releases/download/v0.2.0/Onca3D.exe'};assert.equal(updater.validAsset(valid,'.exe'),true);assert.equal(updater.validAsset({...valid,url:'https://evil.test/Onca3D.exe'},'.exe'),false);assert.equal(updater.validAsset({...valid,sha256:''},'.exe'),false);assert.equal(updater.validAsset({...valid,url:valid.url+'?redirect=evil'},'.exe'),false);});

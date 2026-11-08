@@ -1,21 +1,17 @@
-# ONÇA 3D — atualizações oficiais
+# ONÇA 3D
 
-Canal público de distribuição do ONÇA 3D para celulares e tablets Android e computadores Windows.
+Aplicativo local para gestão de impressão 3D em Android, tablets e Windows. Visual amarelo e preto, projetos com foto, carretéis por cor e marca, calculadora de custos, produção, vendas, rankings e backup individual criptografado.
 
-**Estado: preparação do projeto. Ainda não há aplicativo compilado ou instalador disponível.** A criação deste canal não significa que o aplicativo ou seu atualizador estejam implementados.
+## Prévia 0.1.0
 
-## Distribuição
+Os instaladores validados serão disponibilizados em [Releases](https://github.com/PeraTV/onca3d-atualizacoes/releases). Esta é uma prévia para avaliação; confira as limitações e os testes realizados no [guia completo](app/README.md).
 
-As versões validadas serão disponibilizadas em [Releases](https://github.com/PeraTV/onca3d-atualizacoes/releases). O arquivo `updates/stable.json` está reservado para informar versões ao futuro aplicativo. Enquanto `available` for `false`, nenhuma instalação deve ser oferecida.
+O código-fonte está em [app](app). Não há hospedagem de servidor próprio: os dados ficam no aparelho. IBGE e ANEEL fornecem referências online; cada usuário pode conectar seu próprio repositório privado para backup.
 
-No Android, a distribuição direta deverá abrir o instalador do sistema e respeitar a confirmação do usuário. As atualizações devem preservar a identidade e assinatura do aplicativo. No Windows, o mecanismo de atualização ainda será escolhido e implementado.
+## Atualizações e privacidade
 
-## Dados individuais
+`updates/stable.json` é o canal de versões consultado pelo aplicativo. As atualizações usam os instaladores deste repositório e verificam seus hashes. No Android, o sistema pede confirmação da instalação. Preserve a assinatura e a identidade do aplicativo ao publicar versões.
 
-Este repositório é exclusivo para distribuição e documentação pública. Não armazena backups, fotos pessoais, registros de vendas, tokens, chaves de API ou credenciais de usuários.
+Este repositório público não recebe backups, fotos pessoais, registros de vendas ou tokens. As credenciais individuais ficam fora do código e do canal de atualizações. Backup e restauração não equivalem a sincronização simultânea entre aparelhos.
 
-O aplicativo será planejado para salvar os dados no aparelho e permitir backup no serviço conectado individualmente por cada usuário. O provedor de backup ainda será definido. Uma conta de armazenamento não será compartilhada entre usuários. Backup e sincronização entre aparelhos são recursos distintos; sincronização ainda precisa ter seu escopo definido.
-
-## Requisitos
-
-Veja [os requisitos do projeto](docs/REQUISITOS.md). Não é necessário manter servidor próprio para o funcionamento local. Consultas, downloads e backups online dependem dos respectivos serviços externos e de suas condições.
+Veja [instruções de uso e manutenção](app/README.md).

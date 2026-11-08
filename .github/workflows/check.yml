@@ -1,0 +1,25 @@
+name: Verificar código do ONÇA 3D
+on:
+  workflow_dispatch:
+  push:
+    paths: ['app/**', '.github/workflows/check.yml']
+  pull_request:
+    paths: ['app/**']
+permissions:
+  contents: read
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: app
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: app/package-lock.json
+      - run: npm ci --ignore-scripts
+      - run: npm test
+      - run: npm run build
