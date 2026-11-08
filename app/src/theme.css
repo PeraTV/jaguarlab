@@ -12,3 +12,5 @@
 
 .inventory-summary:after,.stat.accent:after{background-image:none;background-color:var(--accent);-webkit-mask:url('/spots.svg') right center/160px no-repeat;mask:url('/spots.svg') right center/160px no-repeat}.stat.accent:after{background-color:var(--on-accent)}.price-advice h2{margin-bottom:14px}.price-advice>.note{margin:14px 0}.price-advice .price-box strong{font-size:28px}
 
+.jaguar-logo{filter:var(--logo-filter,none)}.logo-theme-choice{display:flex;align-items:center;gap:22px;margin:22px 0;padding:18px;border:1px solid var(--border);border-radius:12px}.logo-theme-choice>img{width:90px;height:100px;object-fit:contain;flex-shrink:0}.logo-theme-choice .check{margin:0 0 10px}.logo-theme-choice .note{margin:0}@media(max-width:480px){.logo-theme-choice{align-items:flex-start;gap:14px;padding:14px}.logo-theme-choice>img{width:64px;height:80px}}
+

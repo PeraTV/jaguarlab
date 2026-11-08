@@ -124,3 +124,7 @@ Aceita arquivos até 1 GiB (mostrado como 1 GB na interface). STL binário grand
 ### Versão 0.5.1
 Atalho visível para ganhar 100% sobre o custo, sugestões editáveis de orçamento por tipo de peça com trabalho adicional e taxas. O orçamento compartilhado usa o valor escolhido pelo usuário; a referência não é pesquisa de mercado. Pintas do estoque seguem o destaque do tema. Atualização Android prioriza o link de Releases, reduz a espera de conexões sem resposta e abre o instalador após conferir o download. Após autorizar fontes externas, o instalador abre ao voltar ao app. O botão de instalação permanece como alternativa se o Android impedir a abertura. Tutorial substituído por versão de 1min40s com voz neural.
 
+
+### Logo opcional no tema — 0.5.2
+Em Cores, ative Logo acompanha a cor do tema para mudar o amarelo do desenho do jaguar dentro do aplicativo. Preserva os detalhes claros e não altera a foto da empresa nem o ícone instalado. A opção é desligada por padrão e acompanha o backup.
+

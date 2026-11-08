@@ -1,3 +1,6 @@
-import test from 'node:test';import assert from 'node:assert/strict';import {themeVars} from '../src/theme.mjs';
+import test from 'node:test';import assert from 'node:assert/strict';import {themeVars,logoColorMatrix} from '../src/theme.mjs';
 test('tema preserva preto/amarelo por padrão e rejeita códigos inválidos',()=>{const a=themeVars();assert.equal(a['--base'],'#0b0c0e');assert.equal(a['--yellow'],'#ffc400');assert.equal(a['--on-accent'],'#101114');assert.equal(themeVars({base:'url(x)',accent:'red'})['--base'],a['--base']);});
 test('fundo e destaque independentes mantêm texto legível em tema claro ou escuro',()=>{const a=themeVars({base:'#ffffff',accent:'#0000ff'});assert.equal(a['--text'],'#101114');assert.equal(a['--on-accent'],'#ffffff');assert.equal(a['--yellow'],'#0000ff');const b=themeVars({base:'#000000',accent:'#ffffff'});assert.equal(b['--text'],'#f3f3f5');assert.equal(b['--on-accent'],'#101114');});
+
+test('cor do jaguar acompanha destaque preservando branco, cinza, preto e transparência',()=>{const m=logoColorMatrix('#44b9ff').split(' ').map(Number);const transform=p=>[0,1,2,3].map(row=>m.slice(row*5,row*5+4).reduce((sum,x,i)=>sum+x*p[i],m[row*5+4]));assert.deepEqual(transform([1,1,1,1]),[1,1,1,1]);assert.deepEqual(transform([0,0,0,1]),[0,0,0,1]);assert.deepEqual(transform([.5,.5,.5,1]),[.5,.5,.5,1]);assert.deepEqual(transform([1,.77,0,1]),[68/255,185/255,1,1]);assert.equal(transform([1,.77,0,0])[3],0);assert.equal(logoColorMatrix('url(evil)'),logoColorMatrix('#ffc400'));});
+
