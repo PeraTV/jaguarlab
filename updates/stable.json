@@ -5,21 +5,21 @@
   "available": true,
   "status": "preview",
   "release": {
-    "version": "0.5.3",
+    "version": "0.5.4",
     "notes": "Prévia para avaliação. Faça backup antes de atualizar.",
-    "publishedAt": "2026-11-08T21:44:38.127Z"
+    "publishedAt": "2026-11-08T22:08:41.414Z"
   },
   "platforms": {
     "windows": {
-      "url": "https://github.com/PeraTV/onca3d-atualizacoes/releases/download/v0.5.3/JaguarLab-0.5.3-Setup.exe",
-      "canonicalUrl": "https://github.com/PeraTV/jaguarlab/releases/download/v0.5.3/JaguarLab-0.5.3-Setup.exe",
-      "sha256": "2e01022c006eac4d4eaf03f5fff144080498fba770cd0db490bf780d638d40aa",
-      "sizeBytes": 127566383
+      "url": "https://github.com/PeraTV/onca3d-atualizacoes/releases/download/v0.5.4/JaguarLab-0.5.4-Setup.exe",
+      "canonicalUrl": "https://github.com/PeraTV/jaguarlab/releases/download/v0.5.4/JaguarLab-0.5.4-Setup.exe",
+      "sha256": "5bce1aeb23a61f743021d14ba038877fe4b61695504eedaa426b483b3f7b1073",
+      "sizeBytes": 127566297
     },
     "android": {
-      "url": "https://github.com/PeraTV/onca3d-atualizacoes/releases/download/v0.5.3/Onca3D-0.5.3-Android.apk",
-      "canonicalUrl": "https://github.com/PeraTV/jaguarlab/releases/download/v0.5.3/JaguarLab-0.5.3-Android.apk",
-      "sha256": "a23240fc9ab6aaf3c32328b26b8df0ef20c2361be0a49f630a6d1fd47a65d3e0",
+      "url": "https://github.com/PeraTV/onca3d-atualizacoes/releases/download/v0.5.4/Onca3D-0.5.4-Android.apk",
+      "canonicalUrl": "https://github.com/PeraTV/jaguarlab/releases/download/v0.5.4/JaguarLab-0.5.4-Android.apk",
+      "sha256": "0f55318b36a3022a9cc070c8e0950a0cc2d1664c6f1a44cb8860f4153cce8907",
       "sizeBytes": 5842171
     }
   }
