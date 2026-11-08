@@ -101,3 +101,21 @@ O app é o único responsável pelo espaço das barras e do teclado (SystemBars.
 Download e instalação são etapas separadas. O APK direto da tag pública é a primeira fonte e o arquivo da release é a alternativa. O progresso mostra fase, bytes e porcentagem quando o tamanho é conhecido; há cancelamento e erro local. A conexão aguarda até 8 s e a leitura até 15 s sem receber dados antes de tentar a alternativa. O tempo total de transferência é limitado.
 
 A integridade SHA-256 é obrigatória; tamanho, pacote, assinatura e versão Android também são conferidos. A autorização de instalação é pedida depois do download. O APK verificado pode ser reutilizado, sem baixar novamente após autorizar. A cópia de recuperação é gravada em segundo plano antes da transferência. O download público não exige token; backups continuam individuais.
+
+## 0.5.0 — empresa, clientes, impressoras e compartilhamento
+
+- **Minha empresa:** foto própria ao lado do nome do ateliê, sem substituir a identidade JAGUAR LAB no cabeçalho. Nome, contatos, CNPJ, razão social, endereço e dados adicionais são opcionais. A foto PNG conserva transparência.
+- **Clientes:** todos os campos opcionais, incluindo telefone, e-mail e CPF. Vendas novas podem ser vinculadas por ID; editar/arquivar o cliente preserva o texto histórico das vendas. O cadastro mostra totais, recebimentos e vendas vinculadas. Orçamentos salvos também ficam acessíveis pelo cliente.
+- **Impressoras:** catálogo inicial com Bambu Lab A1/A1 mini, Anycubic Kobra 3, Creality Ender-3 V3 e cadastro personalizado. Kobra 4 é uma referência editável baseada no nome do perfil apresentado pelo usuário, sem volume presumido. Confira o volume da sua máquina. Consumo médio não é inferido da potência nominal: é informado pelo usuário. A seleção integra consumo e custo por hora na calculadora e sugere bico/camada na prévia. Calibrações de outra impressora ficam inativas.
+- **Orçamento:** selecione um cliente opcional, personalize peça, prazo, pagamento, validade e observações. Copiar mantém um texto formatado; WhatsApp abre a composição para você confirmar; Compartilhar usa a seleção do sistema. O texto não inclui CPF do cliente, custos internos ou margem. Dados fiscais da empresa só são incluídos por opção. A foto aparece na prévia, mas não é anexada pelos botões de texto.
+- **Vídeo:** guia narrado em português de 3min21s, com legendas e telas demonstrativas. Está em Tutoriais e na ajuda do backup. Requer internet para reproduzir; o guia em texto continua offline. Não cria repositório nem token automaticamente e não contém credenciais reais.
+
+Fotos, clientes, impressoras, dados opcionais e orçamentos entram no backup criptografado. Backups antigos recebem listas vazias de clientes e impressoras ao carregar, sem apagar registros.
+
+### Fontes das referências e do tutorial
+
+[GitHub: criar repositório](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository) · [GitHub: tokens pessoais](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) · [Bambu A1 mini](https://bambulab.com/en/a1-mini/tech-specs) · [Bambu A1](https://bambulab.com/en/a1/tech-specs) · [Anycubic Kobra 3](https://store.anycubic.com/products/anycubic-kobra-3) · [Creality Ender-3 V3](https://www.creality.com/products/creality-ender-3-v3).
+
+
+### Modelos locais grandes
+Aceita arquivos até 1 GiB (mostrado como 1 GB na interface). STL binário grande usa leitura por blocos e uma malha simplificada para visualização, sem estimativa geométrica de consumo: use tempo/peso do fatiador. STL ASCII grande deve ser exportado como binário. 3MF grande usa a imagem e os metadados incluídos; sem imagem compatível, exporte STL binário. A complexidade e a memória do aparelho podem limitar a abertura. Modelos e imagens internas do 3MF ficam fora do backup criptografado. O cadastro do projeto, fotos e dados comerciais permanecem; após restaurar em outro aparelho, reimporte o original em Projetos → Editar. Guarde os originais separadamente. Testado com STL real de 72 MB; um arquivo físico de 1 GB ainda não foi validado em celular.

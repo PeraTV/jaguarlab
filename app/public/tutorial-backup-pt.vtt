@@ -1,0 +1,43 @@
+WEBVTT
+
+00:00:00.000 --> 00:00:14.250
+Neste guia você vai criar um repositório privado e um token para o backup do Jaguar Lab. As telas são demonstrativas. Nenhuma credencial real aparece no vídeo.
+
+00:00:14.250 --> 00:00:25.417
+Entre em github.com na sua própria conta. Se ainda não tiver uma conta, crie uma e confirme seu e-mail antes de continuar.
+
+00:00:25.417 --> 00:00:38.667
+Abra github.com barra new. Em Owner, escolha sua conta. Dê um nome, por exemplo, meus backups jaguar lab, separado por hífens.
+
+00:00:38.667 --> 00:00:53.083
+Selecione Private e clique Create repository. Não use o repositório público de atualizações. Seu backup deve ficar no seu próprio repositório privado.
+
+00:00:53.083 --> 00:01:07.250
+Copie o usuário e o nome do repositório, separados por uma barra. No app, você também pode colar o endereço completo. O exemplo usa uma conta fictícia.
+
+00:01:07.250 --> 00:01:20.583
+Abra Settings, Developer settings, Personal access tokens e Fine-grained tokens. O passo a passo do Jaguar Lab também tem um link direto para essa tela.
+
+00:01:20.583 --> 00:01:33.917
+Clique Generate new token. Dê o nome Backup Jaguar Lab e escolha uma validade. Quando vencer, gere outro token para continuar enviando backups.
+
+00:01:33.917 --> 00:01:47.583
+Em Resource owner escolha sua conta. Em Repository access, escolha Only select repositories e marque apenas o repositório privado que acabou de criar.
+
+00:01:47.583 --> 00:02:02.250
+Nas permissões do repositório, escolha Contents e Read and write. Metadata é incluída automaticamente. Não são necessárias outras permissões para o backup do app.
+
+00:02:02.250 --> 00:02:18.250
+Confira tudo e clique Generate token. Copie e guarde o código de modo protegido. O GitHub mostra o valor completo uma vez. Este vídeo não contém um token válido.
+
+00:02:18.250 --> 00:02:33.833
+No Jaguar Lab, abra Configurações e Seu backup, protegido. Informe seu repositório privado e cole o token. Cada pessoa usa sua própria conta e sua própria chave.
+
+00:02:33.833 --> 00:02:48.667
+Escolha uma senha de backup com no mínimo dez caracteres. Ela protege o arquivo e é diferente do token. Guarde essa senha: sem ela não é possível recuperar os dados.
+
+00:02:48.667 --> 00:03:04.417
+Toque Enviar backup e aguarde a confirmação. Para recuperar em outro aparelho, use o mesmo repositório, um token válido com acesso e a senha do backup. É preciso internet.
+
+00:03:04.417 --> 00:03:21.000
+Os registros ficam no aparelho. O token é usado nesta sessão e não entra no backup. Se preferir, exporte um arquivo e guarde onde quiser. Pronto: seu backup está configurado.
