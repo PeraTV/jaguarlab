@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0",
-  "sha256": "7d532fabb68fceea5598620298d88acd14de16ce180836558e67e4e9f7ab3908",
-  "note": "JAGUAR LAB: cálculo livre, lucro configurável, leitura G-code, ícone e área segura Android corrigidos."
+  "version": "0.4.0",
+  "sha256": "ed103f481cee895ab5b0ccb3f706bb24c12cbe52f6977305e8ab79d62c3646da",
+  "note": "JAGUAR LAB: paletas independentes, atalhos visíveis, cálculo livre e lucro configurável."
 }

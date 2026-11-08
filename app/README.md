@@ -79,3 +79,9 @@ Na calculadora, o projeto é opcional. Você pode informar preço por kg, peso e
 Depois de fatiar no Anycubic/Orca/Bambu/Prusa, exporte um G-code de até 20 MB e use **Importar dados do fatiador**. O app lê os totais presentes no cabeçalho e mostra as trajetórias compatíveis por camadas. Não executa um fatiador completo; STL isolado oferece somente aproximação geométrica opcional. Quando o arquivo não informa gramas ou tempo, o dado ausente continua disponível para preenchimento manual. G-code binário (.bgcode), arquivos compactados e comandos proprietários podem exigir exportação como G-code de texto. A prévia simplifica arquivos grandes e alguns arcos; essa simplificação não altera os totais lidos.
 
 O APK corrige o recorte do ícone e aplica a área segura das barras, câmera e teclado do Android. A consulta de atualização foi corrigida para o JSON servido pelo GitHub. Instale por cima da versão antiga uma vez, sem desinstalar, se o verificador antigo não oferecer a atualização.
+
+### 0.3.1 — atalhos visíveis
+Os botões **Atualizar** e **Colaboração** aparecem no cabeçalho em celular, tablet e PC. Atualizar abre uma área própria, consulta a versão publicada e oferece baixar e instalar quando houver uma versão mais nova. A confirmação final de instalação continua sendo feita pelo sistema. Colaboração abre diretamente a tela do QR Code do projeto.
+
+### 0.4.0 — personalizar cores
+O botão Cores abre dois controles independentes para fundo e destaque. Há paletas, seletor livre, código hexadecimal e restauração do padrão. A preferência fica em settings.theme, entra no backup e não altera a logo nem as cores dos carretéis.
