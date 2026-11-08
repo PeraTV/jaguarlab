@@ -1,3 +1,3 @@
-export const CHANNEL_API='https://api.github.com/repos/PeraTV/onca3d-atualizacoes/contents/updates/stable.json?ref=main';
+export const CHANNEL_API='https://api.github.com/repos/PeraTV/jaguarlab/contents/updates/stable.json?ref=main';
 export function decodeChannelFile(file){if(file?.encoding!=='base64'||typeof file.content!=='string'||!file.content.trim())throw Error('O canal oficial não retornou uma lista de versões válida.');try{const bytes=Uint8Array.from(atob(file.content.replace(/\s/g,'')),c=>c.charCodeAt(0));return JSON.parse(new TextDecoder('utf-8',{fatal:true}).decode(bytes));}catch{throw Error('Não foi possível ler a lista oficial de versões.');}}
 export async function readUpdateChannel(request){const file=await request(CHANNEL_API+'&check='+Date.now(),{headers:{Accept:'application/vnd.github+json','Cache-Control':'no-cache'},cache:'no-store'});return decodeChannelFile(file);}

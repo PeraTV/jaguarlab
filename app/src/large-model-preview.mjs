@@ -36,4 +36,3 @@ export async function large3mfMetadata(file){
  for(let offset=0;offset<file.size;offset+=1024*1024){unzip.push(new Uint8Array(await file.slice(offset,offset+1024*1024).arrayBuffer()),offset+1024*1024>=file.size);if(error)throw error;await new Promise(resolve=>setTimeout(resolve,0));}
  return files;
 }
-

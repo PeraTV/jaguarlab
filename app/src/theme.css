@@ -14,3 +14,4 @@
 
 .jaguar-logo{filter:var(--logo-filter,none)}.logo-theme-choice{display:flex;align-items:center;gap:22px;margin:22px 0;padding:18px;border:1px solid var(--border);border-radius:12px}.logo-theme-choice>img{width:90px;height:100px;object-fit:contain;flex-shrink:0}.logo-theme-choice .check{margin:0 0 10px}.logo-theme-choice .note{margin:0}@media(max-width:480px){.logo-theme-choice{align-items:flex-start;gap:14px;padding:14px}.logo-theme-choice>img{width:64px;height:80px}}
 
+.video-chapters{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;margin:14px 0}.video-chapters .button{display:flex;justify-content:space-between;gap:10px;text-align:left;font-size:11px;padding:10px;min-height:44px}.video-chapters .button small{color:var(--muted);white-space:nowrap;font-size:10px}.general-video video{max-height:580px}

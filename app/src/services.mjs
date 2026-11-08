@@ -6,8 +6,8 @@ import {VERSION} from './domain.mjs';
 export async function request(url,options={}){if(window.oncaDesktop?.publicGet&&!options.method&&!options.headers?.Authorization)return window.oncaDesktop.publicGet(url);if(Capacitor.isNativePlatform()){const r=await CapacitorHttp.request({url,method:options.method||'GET',headers:options.headers||{},data:options.body?JSON.parse(options.body):undefined,connectTimeout:20000,readTimeout:30000,responseType:'json'});if(r.status<200||r.status>=300)throw Error(`Serviço respondeu ${r.status}. Confira conexão e permissões.`);return decodeJsonResponse(r.data);}const r=await fetch(url,{...options,signal:AbortSignal.timeout(30000)});if(!r.ok)throw Error(`Serviço respondeu ${r.status}. Confira conexão e permissões.`);return r.json();}
 export async function cities(uf){return request(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${encodeURIComponent(uf)}/municipios?orderBy=nome`);}
 export async function checkUpdate(){const manifest=await readUpdateChannel(request);return availableUpdate(manifest,VERSION);}
-export async function githubBackup({token,repo,body,restore=false}){
-  if(!/^[\w-]+\/[\w.-]+$/.test(repo)||repo.toLowerCase()==='peratv/onca3d-atualizacoes')throw Error('Informe seu repositório privado de backup, diferente do canal de atualizações.');
+export async function githubBackup({token,repo,body,restore=false,list=false,snapshotId}){
+  if(!/^[\w-]+\/[\w.-]+$/.test(repo)||['peratv/onca3d-atualizacoes','peratv/jaguarlab'].includes(repo.toLowerCase()))throw Error('Informe seu repositório privado de backup, diferente do canal de atualizações.');
   const headers={Authorization:`Bearer ${token}`,Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'};
   const user=await request('https://api.github.com/user',{headers});
   const metadata=await request(`https://api.github.com/repos/${repo}`,{headers});
@@ -17,9 +17,15 @@ export async function githubBackup({token,repo,body,restore=false}){
   let pointer=null;
   try{pointer=await request(root+pointerPath,{headers});}catch(e){if(!e.message.includes('404'))throw e;}
   const hash=async text=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(text)))).map(x=>x.toString(16).padStart(2,'0')).join('');
+  const latest=pointer?.content?JSON.parse(atob(pointer.content.replace(/\n/g,''))):null;
+  const descriptor=info=>({format:info.format,createdAt:info.createdAt,parts:info.parts,size:info.size,sha256:info.sha256});
+  const copies=latest?[descriptor(latest),...(Array.isArray(latest.history)?latest.history:[])]:[];
+  const identity=info=>info.parts?.[0]?.replace(/\/part-\d{4}\.txt$/,'');
+  if(list)return copies.map((info,i)=>({id:identity(info),createdAt:info.createdAt,size:info.size,latest:i===0}));
   if(restore){
-    if(!pointer?.content)throw Error('Nenhum backup encontrado.');
-    const info=JSON.parse(atob(pointer.content.replace(/\n/g,'')));
+    if(!latest)throw Error('Nenhum backup encontrado.');
+    const info=snapshotId?copies.find(x=>identity(x)===snapshotId):latest;
+    if(!info)throw Error('Essa cópia não está mais na lista. Busque os backups novamente.');
     if(info.format!=='onca3d-parts-v1'||!Array.isArray(info.parts)||!info.parts.length||info.parts.length>300)throw Error('Índice de backup inválido.');
     let text='';
     for(const path of info.parts){
@@ -40,10 +46,10 @@ export async function githubBackup({token,repo,body,restore=false}){
     await request(root+path,{method:'PUT',headers:{...headers,'Content-Type':'application/json'},body:JSON.stringify({message:'Parte de backup pessoal criptografado ONÇA 3D',content:btoa(body.slice(i,i+500000))})});
     parts.push(path);
   }
-  const info={format:'onca3d-parts-v1',createdAt:new Date().toISOString(),parts,size:body.length,sha256:await hash(body)};
+  const info={format:'onca3d-parts-v1',createdAt:new Date().toISOString(),parts,size:body.length,sha256:await hash(body),history:copies.slice(0,99).map(descriptor)};
   await request(root+pointerPath,{method:'PUT',headers:{...headers,'Content-Type':'application/json'},body:JSON.stringify({message:'Conclui backup pessoal ONÇA 3D',content:btoa(JSON.stringify(info)),...(pointer?{sha:pointer.sha}:{})})});
 }
-export async function exportFile(name,body){if(window.oncaDesktop)return window.oncaDesktop.saveFile({name,body});if(Capacitor.isNativePlatform()){const {Filesystem,Directory,Encoding}=await import('@capacitor/filesystem');const {Share}=await import('@capacitor/share');const file=await Filesystem.writeFile({path:name,data:body,directory:Directory.Cache,encoding:Encoding.UTF8});await Share.share({title:'Backup ONÇA 3D',url:file.uri,dialogTitle:'Salvar backup'});return true;}const url=URL.createObjectURL(new Blob([body],{type:'application/octet-stream'}));const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);return true;}
+export async function exportFile(name,body){if(window.oncaDesktop)return window.oncaDesktop.saveFile({name,body});if(Capacitor.isNativePlatform()){const {Filesystem,Directory,Encoding}=await import('@capacitor/filesystem');const {Share}=await import('@capacitor/share');const file=await Filesystem.writeFile({path:name,data:body,directory:Directory.Cache,encoding:Encoding.UTF8});await Share.share({title:'Backup JAGUAR LAB',url:file.uri,dialogTitle:'Salvar backup'});return true;}const url=URL.createObjectURL(new Blob([body],{type:'application/octet-stream'}));const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);return true;}
 export async function photo(file){if(!['image/jpeg','image/png','image/webp'].includes(file.type))throw Error('Escolha uma foto JPG, PNG ou WebP.');if(file.size>20*1024*1024)throw Error('A foto deve ter até 20 MB.');const bitmap=await createImageBitmap(file);try{const scale=Math.min(1,960/Math.max(bitmap.width,bitmap.height));const canvas=document.createElement('canvas');canvas.width=Math.round(bitmap.width*scale);canvas.height=Math.round(bitmap.height*scale);canvas.getContext('2d').drawImage(bitmap,0,0,canvas.width,canvas.height);return canvas.toDataURL(file.type==='image/png'?'image/png':'image/jpeg',0.82);}finally{bitmap.close();}}
 
 const NativeUpdater=registerPlugin('OncaUpdater');
@@ -53,7 +59,7 @@ export const nativeUpdateInstall=()=>NativeUpdater.install();
 export const nativeUpdateCancel=()=>NativeUpdater.cancel();
 export const nativeUpdateStatus=()=>NativeUpdater.status();
 export const onUpdateProgress=callback=>NativeUpdater.addListener('updateProgress',callback);
-export async function installUpdate(state){if(window.oncaDesktop)return window.oncaDesktop.installUpdate(JSON.stringify(state));if(Capacitor.isNativePlatform()){await nativeUpdateDownload(state);return nativeUpdateInstall();}window.open('https://github.com/PeraTV/onca3d-atualizacoes/releases','_blank','noopener');}
+export async function installUpdate(state){if(window.oncaDesktop)return window.oncaDesktop.installUpdate(JSON.stringify(state));if(Capacitor.isNativePlatform()){await nativeUpdateDownload(state);return nativeUpdateInstall();}window.open('https://github.com/PeraTV/jaguarlab/releases','_blank','noopener');}
 
 export async function fetchTariffs(){
   const filters={DscSubGrupo:'B1',DscClasse:'Residencial',DscSubClasse:'Residencial',DscModalidadeTarifaria:'Convencional',DscBaseTarifaria:'Tarifa de Aplicação',DscDetalhe:'Não se aplica',DscUnidadeTerciaria:'MWh'};

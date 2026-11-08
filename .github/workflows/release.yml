@@ -1,4 +1,4 @@
-name: Publicar ONÇA 3D Android e Windows
+name: Publicar JAGUAR LAB Android e Windows
 on:
   workflow_dispatch:
   push:

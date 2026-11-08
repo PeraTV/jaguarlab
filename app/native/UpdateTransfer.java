@@ -13,8 +13,8 @@ public final class UpdateTransfer {
   public void cancel(){cancelled=true;HttpURLConnection c=connection;if(c!=null)c.disconnect();}
   void check() throws IOException {if(cancelled)throw new IOException("Download cancelado.");}
  }
- public static String direct(String version){if(!version.matches("\\d+\\.\\d+\\.\\d+"))throw new IllegalArgumentException("Versão inválida");return "https://raw.githubusercontent.com/PeraTV/onca3d-atualizacoes/v"+version+"/distribution/Onca3D-"+version+"-Android.apk";}
- public static boolean initial(URL u){if(!"https".equals(u.getProtocol())||u.getUserInfo()!=null||u.getPort()!=-1||u.getQuery()!=null||u.getRef()!=null)return false;String p=u.getPath();return (u.getHost().equals("raw.githubusercontent.com")&&p.matches("/PeraTV/onca3d-atualizacoes/v\\d+\\.\\d+\\.\\d+/distribution/Onca3D-\\d+\\.\\d+\\.\\d+-Android\\.apk"))||(u.getHost().equals("github.com")&&p.matches("/PeraTV/onca3d-atualizacoes/releases/download/v\\d+\\.\\d+\\.\\d+/Onca3D-\\d+\\.\\d+\\.\\d+-Android\\.apk"));}
+ public static String direct(String version){if(!version.matches("\\d+\\.\\d+\\.\\d+"))throw new IllegalArgumentException("Versão inválida");return "https://raw.githubusercontent.com/PeraTV/jaguarlab/v"+version+"/distribution/JaguarLab-"+version+"-Android.apk";}
+ public static boolean initial(URL u){if(!"https".equals(u.getProtocol())||u.getUserInfo()!=null||u.getPort()!=-1||u.getQuery()!=null||u.getRef()!=null)return false;String p=u.getPath();return (u.getHost().equals("raw.githubusercontent.com")&&p.matches("/PeraTV/(?:jaguarlab|onca3d-atualizacoes)/v\\d+\\.\\d+\\.\\d+/distribution/(?:JaguarLab|Onca3D)-\\d+\\.\\d+\\.\\d+-Android\\.apk"))||(u.getHost().equals("github.com")&&p.matches("/PeraTV/(?:jaguarlab|onca3d-atualizacoes)/releases/download/v\\d+\\.\\d+\\.\\d+/(?:JaguarLab|Onca3D)-\\d+\\.\\d+\\.\\d+-Android\\.apk"));}
  public static boolean redirect(URL u){if(!"https".equals(u.getProtocol())||u.getUserInfo()!=null||u.getPort()!=-1||u.getRef()!=null)return false;String h=u.getHost();return h.equals("github.com")||h.equals("raw.githubusercontent.com")||h.equals("release-assets.githubusercontent.com")||h.equals("objects.githubusercontent.com");}
  public static String digest(File file) throws Exception {MessageDigest digest=MessageDigest.getInstance("SHA-256");try(InputStream in=new FileInputStream(file)){byte[] b=new byte[65536];int n;while((n=in.read(b))!=-1)digest.update(b,0,n);}StringBuilder out=new StringBuilder();for(byte b:digest.digest())out.append(String.format(Locale.ROOT,"%02x",b&255));return out.toString();}
  public static void download(String[] sources,File target,String sha,long expectedSize,Progress progress,Cancellation cancel) throws Exception {
@@ -38,4 +38,3 @@ public final class UpdateTransfer {
   throw new IOException("Não foi possível baixar pelos dois links públicos. "+(failure==null?"":failure.getMessage()),failure);
  }
 }
-

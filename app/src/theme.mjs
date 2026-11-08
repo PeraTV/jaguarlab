@@ -6,4 +6,3 @@ export function themeVars(theme={}){const base=valid(theme.base)?theme.base:'#0b
 export function applyTheme(theme){for(const [key,value]of Object.entries(themeVars(theme)))document.documentElement.style.setProperty(key,value);document.documentElement.style.setProperty('--logo-filter',theme?.logoFollow===true?'url(#jaguar-theme-filter)':'none');document.getElementById('jaguar-theme-matrix')?.setAttribute('values',logoColorMatrix(theme?.accent));}
 
 export function logoColorMatrix(accent){const [r,g,b]=rgb(valid(accent)?accent:'#ffc400').map(x=>x/255);return [r,0,1-r,0,0,g,0,1-g,0,0,b,0,1-b,0,0,0,0,0,1,0].join(' ');}
-

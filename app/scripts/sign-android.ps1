@@ -9,7 +9,7 @@ try {
   $releasePath=Join-Path $projectPath 'release'
   New-Item -ItemType Directory -Force -Path $releasePath | Out-Null
   $version=(Get-Content -Raw -LiteralPath (Join-Path $projectPath 'package.json') | ConvertFrom-Json).version
-  $apk=Join-Path $releasePath "Onca3D-$version-Android.apk"
+  $apk=Join-Path $releasePath "JaguarLab-$version-Android.apk"
   & "$toolsPath/android-sdk/build-tools/36.0.0/zipalign.exe" -f -p 4 $unsigned (Join-Path $releasePath 'aligned.apk')
   if($LASTEXITCODE -ne 0){throw 'Falha ao alinhar APK'}
   & "$toolsPath/android-sdk/build-tools/36.0.0/apksigner.bat" sign --ks "$privatePath/android-signing.jks" --ks-key-alias onca3d --ks-pass env:ONCA_SIGN_PASSWORD --key-pass env:ONCA_SIGN_PASSWORD --out $apk (Join-Path $releasePath 'aligned.apk')

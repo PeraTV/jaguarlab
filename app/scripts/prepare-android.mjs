@@ -4,6 +4,7 @@ const java=`${dir}/java/br/com/onca3d/app`;
 fs.mkdirSync(java,{recursive:true});
 fs.copyFileSync('native/OncaUpdaterPlugin.java',`${java}/OncaUpdaterPlugin.java`);
 fs.copyFileSync('native/UpdateTransfer.java',`${java}/UpdateTransfer.java`);
+fs.copyFileSync('native/BackupAccessPlugin.java',`${java}/BackupAccessPlugin.java`);
 fs.writeFileSync(`${java}/MainActivity.java`, `package br.com.onca3d.app;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +18,7 @@ public class MainActivity extends BridgeActivity {
  private Boolean lastKeyboardVisible = null;
  @Override public void onCreate(Bundle state) {
   registerPlugin(OncaUpdaterPlugin.class);
+  registerPlugin(BackupAccessPlugin.class);
   super.onCreate(state);
   WindowCompat.setDecorFitsSystemWindows(getWindow(), false);
   View content = findViewById(android.R.id.content);

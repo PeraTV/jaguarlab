@@ -19,4 +19,3 @@ public final class UpdateTransferTest {
   System.out.println("TRANSFER_POLICY_TESTS_PASSED");
  }
 }
-

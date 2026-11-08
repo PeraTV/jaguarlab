@@ -1,2 +1,2 @@
 const {contextBridge,ipcRenderer}=require('electron');
-contextBridge.exposeInMainWorld('oncaDesktop',{publicGet:url=>ipcRenderer.invoke('public-get',url),installUpdate:backup=>ipcRenderer.invoke('install-update',backup),saveFile:data=>ipcRenderer.invoke('save-file',data)});
+contextBridge.exposeInMainWorld('oncaDesktop',{backupAccess:{read:()=>ipcRenderer.invoke('backup-access-read'),write:value=>ipcRenderer.invoke('backup-access-write',value),clear:()=>ipcRenderer.invoke('backup-access-clear')},publicGet:url=>ipcRenderer.invoke('public-get',url),installUpdate:backup=>ipcRenderer.invoke('install-update',backup),saveFile:data=>ipcRenderer.invoke('save-file',data)});

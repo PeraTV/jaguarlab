@@ -1,6 +1,6 @@
 {
   "name": "onca3d",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "private": true,
   "type": "module",
   "description": "Gestão local de impressão 3D",
@@ -49,7 +49,7 @@
     "asar": true,
     "win": {
       "target": "nsis",
-      "artifactName": "Onca3D-${version}-Setup.${ext}",
+      "artifactName": "JaguarLab-${version}-Setup.${ext}",
       "icon": "public/app.ico"
     },
     "nsis": {
@@ -61,4 +61,3 @@
     "publish": null
   }
 }
-

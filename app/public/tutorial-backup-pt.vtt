@@ -1,44 +1,58 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:06.000
-Vamos configurar seu backup no Jaguar Lab. Este é um exemplo com dados fictícios.
+00:00:00.000 --> 00:00:10.833
+Vamos configurar o backup do Jaguar Lab. Estas telas são exemplos com a marca do aplicativo. Na sua conta do GitHub, use seu próprio usuário e nunca compartilhe o token.
 
-00:00:06.000 --> 00:00:12.167
-Entre no GitHub com a sua conta. Se ainda não tiver uma, crie e confirme o e-mail.
+00:00:10.833 --> 00:00:19.583
+No GitHub, abra Create new repository. Escolha sua conta e digite um nome, como BackupJaguarLab. A descrição é opcional.
 
-00:00:12.167 --> 00:00:18.083
-Abra github.com barra new. Escolha sua conta e dê um nome ao repositório.
+00:00:19.583 --> 00:00:28.417
+Em Choose visibility, selecione Private. Clique em Create repository. Os dados serão guardados nesse repositório da sua própria conta.
 
-00:00:18.083 --> 00:00:25.250
-Marque Private e crie o repositório. Use sua própria conta, nunca o canal público do aplicativo.
+00:00:28.417 --> 00:00:40.000
+Copie o endereço do repositório. É essa informação que vai em Seu repositório privado no aplicativo. Você pode colar o link completo ou somente seu usuário, barra, BackupJaguarLab.
 
-00:00:25.250 --> 00:00:30.667
-Copie o endereço do repositório. Você vai colar esse link no Jaguar Lab.
+00:00:40.000 --> 00:00:53.083
+O GitHub pode mostrar Confirm access. Confirme pelo método disponível na sua conta, como senha ou código do autenticador. Google Authenticator é um exemplo, se você o configurou. Não é uma regra de esperar um dia.
 
-00:00:30.667 --> 00:00:37.917
-No GitHub, entre em Settings, Developer settings, Personal access tokens e Fine-grained tokens.
+00:00:53.083 --> 00:01:08.917
+Abra Fine-grained tokens e Generate new token. Dê um nome. Em Expiration, escolha uma validade e troque o token quando vencer. Se disponível, No expiration deixa sem vencimento programado. Mesmo assim ele pode ser revogado; não é acesso garantido para sempre.
 
-00:00:37.917 --> 00:00:45.167
-Clique em Generate new token. Dê um nome e escolha a validade. Quando vencer, será preciso gerar outro.
+00:01:08.917 --> 00:01:19.667
+Em Resource owner, escolha sua conta. Marque Only select repositories e selecione apenas o seu BackupJaguarLab. Não selecione a distribuição pública do aplicativo.
 
-00:00:45.167 --> 00:00:52.667
-Em Resource owner, escolha sua conta. Marque Only select repositories e selecione apenas o seu backup.
+00:01:19.667 --> 00:01:28.583
+Em Permissions, clique em Add permissions. Na busca, digite Contents e marque a opção. Não precisa liberar todas as permissões da conta.
 
-00:00:52.667 --> 00:00:59.333
-Em Repository permissions, deixe Contents como Read and write. Metadata já vem incluída.
+00:01:28.583 --> 00:01:39.667
+Na linha Contents, abra Access e selecione Read and write. Metadata aparece como obrigatória, somente para leitura. Essa combinação permite salvar e recuperar seus backups.
 
-00:00:59.333 --> 00:01:06.583
-Gere o token e copie o código. Ele aparece completo só uma vez. Guarde com cuidado e não compartilhe.
+00:01:39.667 --> 00:01:51.083
+Clique em Generate token. Na confirmação, confira o repositório, a validade e as permissões: Contents com leitura e escrita, Metadata somente leitura. Confirme em Generate token.
 
-00:01:06.583 --> 00:01:13.250
-No Jaguar Lab, abra Configurações e Seu backup, protegido. Cole o repositório e o token.
+00:01:51.083 --> 00:02:02.000
+O código completo aparece uma única vez. Copie e guarde com cuidado. Se sair sem copiar, crie outro. Não envie fotos do código nem o coloque em um repositório público.
 
-00:01:13.250 --> 00:01:21.917
-Crie também uma senha com pelo menos dez caracteres. Ela é diferente do token. Sem essa senha, não dá para recuperar o backup.
+00:02:02.000 --> 00:02:12.917
+No Jaguar Lab, abra Configurações e Seu backup, protegido. Em Seu repositório privado, cole o endereço do backup. Aqui vai o link ou usuário e repositório, não o token.
 
-00:01:21.917 --> 00:01:30.833
-Toque em Enviar backup e espere a confirmação. Para recuperar em outro aparelho, use o mesmo repositório, um token válido e a sua senha.
+00:02:12.917 --> 00:02:25.583
+Em Seu token pessoal, cole o código gerado pelo GitHub. Sem Manter conectado, ele fica só na sessão. Se escolher manter o acesso, salve com a proteção do aparelho. O token nunca entra no arquivo de backup.
 
-00:01:30.833 --> 00:01:39.667
-Pronto! Seus cadastros estão protegidos. Os modelos 3D continuam no aparelho: guarde os arquivos originais separadamente.
+00:02:25.583 --> 00:02:36.000
+No campo Senha de backup, escolha uma senha com pelo menos dez caracteres. Ela é diferente do token. Guarde essa senha: sem ela, não é possível recuperar o backup.
 
+00:02:36.000 --> 00:02:49.917
+Toque em Enviar backup e aguarde a confirmação. Os dados vão para a sua conta, não para a conta do criador. Para recuperar, use o mesmo repositório, um token válido e a senha. Guarde os modelos 3D originais separadamente.
+
+00:02:49.917 --> 00:03:05.250
+Para não preencher tudo de novo, marque Manter conectado neste aparelho e toque em Salvar acesso. Repositório, token e senha ficam protegidos pelo Android ou Windows. Desconectar remove esse acesso salvo. A opção não renova um token vencido ou revogado.
+
+00:03:05.250 --> 00:03:18.917
+No celular que contém seus dados, toque em Enviar backup e aguarde a confirmação. No PC ou tablet, abra o Jaguar Lab e informe o mesmo repositório privado e a mesma senha. Use um token válido com acesso a esse repositório.
+
+00:03:18.917 --> 00:03:34.750
+No aparelho de destino, toque em Buscar backups. Escolha a data da cópia e toque em Importar do GitHub. Confira o resumo e salve a cópia de segurança solicitada. A importação substitui os dados desse aparelho; não mistura as bases nem sincroniza automaticamente.
+
+00:03:34.750 --> 00:03:52.167
+Sem GitHub, use Exportar backup no celular e transfira o arquivo para o PC ou tablet. No destino, escolha Restaurar arquivo e use a mesma senha. Guarde os modelos 3D separadamente. Para levar alterações de volta ao celular, repita o envio e a importação no sentido contrário.
