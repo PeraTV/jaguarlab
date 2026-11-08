@@ -1,5 +1,11 @@
 # JAGUAR LAB
 
+**Download público — não precisa de token nem conta para baixar.**
+
+[Baixar APK direto no celular — 0.4.4](https://raw.githubusercontent.com/PeraTV/onca3d-atualizacoes/v0.4.4/distribution/Onca3D-0.4.4-Android.apk) · [Baixar para Windows — 0.4.4](https://github.com/PeraTV/onca3d-atualizacoes/releases/download/v0.4.4/Onca3D-0.4.4-Setup.exe)
+
+No Android, baixe pelo navegador do próprio celular e instale por cima da versão anterior, sem desinstalar, para manter os registros. Na 0.4.4, o app separa Baixar e Instalar e mostra o andamento. Backups continuam individuais, na conta de cada usuário.
+
 Gestão local de impressão 3D para Android, tablets e Windows.
 
 ## Versão 0.4.4
