@@ -42,7 +42,7 @@ Ao atualizar, instale por cima da versão anterior, sem desinstalar. Exporte um 
 | Relatórios | Período, faturamento, lucro, despesas e rankings de produtos, dias, meses e gastos por marca e cor. |
 | Energia | Estado e cidade, referência da ANEEL, Light e outras distribuidoras; ajuste manual pela conta de luz. |
 | Personalizar cores | Fundo e destaque independentes; opção para o desenho do jaguar acompanhar o tema. |
-| Backup | Exportação protegida por senha e envio opcional ao repositório privado da própria pessoa. |
+| Backup | Exportação protegida, envio e importação de cópias do GitHub privado; acesso salvo opcional no aparelho. |
 | Atualizações | Consulta pública, download e verificação do instalador; confirmação final pelo sistema. |
 | Colaboração | Apoio voluntário ao projeto, sem bloquear recursos. |
 
@@ -91,7 +91,7 @@ O backup online é opcional: cada pessoa cria **seu repositório privado e seu t
 | Cadastros, vendas, produções, custos e configurações | Sim |
 | Foto da empresa e fotos adicionadas aos projetos | Sim |
 | STL/3MF e prévias geradas dos modelos | Não; permanecem no aparelho |
-| Token do GitHub | Não; fica somente na sessão |
+| Token do GitHub | Não; sessão ou acesso protegido neste aparelho, se você escolher |
 
 Guarde a senha do backup. Não há recuperação dessa senha. Restaurar substitui os registros locais; não mescla bases nem sincroniza aparelhos automaticamente. [Detalhes de privacidade e armazenamento](docs/PRIVACIDADE.md).
 
