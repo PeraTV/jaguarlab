@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "appId": "onca3d",
+  "channel": "stable",
+  "available": false,
+  "status": "planning",
+  "release": null,
+  "platforms": {
+    "android": null,
+    "windows": null
+  }
+}
