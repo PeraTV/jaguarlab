@@ -5,19 +5,19 @@
   "available": true,
   "status": "preview",
   "release": {
-    "version": "0.5.1",
+    "version": "0.5.2",
     "notes": "Prévia para avaliação. Faça backup antes de atualizar.",
-    "publishedAt": "2026-11-08T18:04:35.352Z"
+    "publishedAt": "2026-11-08T18:11:08.767Z"
   },
   "platforms": {
     "windows": {
-      "url": "https://github.com/PeraTV/onca3d-atualizacoes/releases/download/v0.5.1/Onca3D-0.5.1-Setup.exe",
-      "sha256": "03340cffff17f4ee1690d1f338faa992fe4d4d0a9b1fe7e79fc2f48cdac46f14",
-      "sizeBytes": 127434239
+      "url": "https://github.com/PeraTV/onca3d-atualizacoes/releases/download/v0.5.2/Onca3D-0.5.2-Setup.exe",
+      "sha256": "0cbca8371666736cd22bf490f2b66c8c5f801ffb94998fb98ec63ea350323970",
+      "sizeBytes": 127434778
     },
     "android": {
-      "url": "https://github.com/PeraTV/onca3d-atualizacoes/releases/download/v0.5.1/Onca3D-0.5.1-Android.apk",
-      "sha256": "f0e9b74ed682b2c0ccf6602815230102aebd032fbad4c0e8f142c230d719e509",
+      "url": "https://github.com/PeraTV/onca3d-atualizacoes/releases/download/v0.5.2/Onca3D-0.5.2-Android.apk",
+      "sha256": "93feda0c955b4523f030ba3e238f33b835f2ab9cfd1d295b34c15245bca182c3",
       "sizeBytes": 5653492
     }
   }
