@@ -1,4 +1,4 @@
-name: Verificar código do ONÇA 3D
+name: Verificar código do JAGUAR LAB
 on:
   workflow_dispatch:
   push:

@@ -8,8 +8,8 @@
 
 | Plataforma | Download oficial |
 | --- | --- |
-| Android — celular e tablet | [Baixar JaguarLab 0.5.3 — APK](https://github.com/PeraTV/jaguarlab/releases/download/v0.5.3/JaguarLab-0.5.3-Android.apk) |
-| Windows 64 bits | [Baixar JaguarLab 0.5.3 — instalador](https://github.com/PeraTV/jaguarlab/releases/download/v0.5.3/JaguarLab-0.5.3-Setup.exe) |
+| Android — celular e tablet | [Baixar JaguarLab 0.5.4 — APK](https://github.com/PeraTV/jaguarlab/releases/download/v0.5.4/JaguarLab-0.5.4-Android.apk) |
+| Windows 64 bits | [Baixar JaguarLab 0.5.4 — instalador](https://github.com/PeraTV/jaguarlab/releases/download/v0.5.4/JaguarLab-0.5.4-Setup.exe) |
 | Todas as versões | [Releases e arquivos de verificação](https://github.com/PeraTV/jaguarlab/releases) |
 
 Ao atualizar, instale por cima da versão anterior, sem desinstalar. Exporte um backup antes. O Android requer versão 7 ou superior; a capacidade de abrir modelos grandes depende da memória do aparelho.
@@ -18,10 +18,10 @@ Ao atualizar, instale por cima da versão anterior, sem desinstalar. Exporte um 
 
 ## Conheça o aplicativo em vídeo
 
-[![Assistir ao guia completo](app/public/tutorial-completo-poster.jpg)](https://raw.githubusercontent.com/PeraTV/jaguarlab/v0.5.3/guides/tutorial-completo.mp4)
+[![Assistir ao guia completo](app/public/tutorial-completo-poster.jpg)](https://raw.githubusercontent.com/PeraTV/jaguarlab/v0.5.4/guides/tutorial-completo.mp4)
 
-- [Guia completo — 4min40s, 21 capítulos](https://raw.githubusercontent.com/PeraTV/jaguarlab/v0.5.3/guides/tutorial-completo.mp4): telas reais do app, exemplos fictícios, voz neural em português e legendas.
-- [Backup, repositório privado e token — passo a passo atualizado](https://raw.githubusercontent.com/PeraTV/jaguarlab/v0.5.3/guides/tutorial-backup.mp4): telas demonstrativas com identidade JAGUAR LAB, sem contas ou credenciais reais.
+- [Guia completo — 3min53s, 21 capítulos](https://raw.githubusercontent.com/PeraTV/jaguarlab/v0.5.4/guides/tutorial-completo.mp4): telas reais do app, exemplos fictícios, voz neural em português e legendas.
+- [Backup, repositório privado e token — passo a passo atualizado](https://raw.githubusercontent.com/PeraTV/jaguarlab/v0.5.4/guides/tutorial-backup.mp4): telas demonstrativas com identidade JAGUAR LAB, sem contas ou credenciais reais.
 - [Índice dos capítulos e transcrição](docs/TUTORIAIS.md). No app, abra **Tutoriais** e toque no capítulo desejado.
 
 ## O que você pode fazer
@@ -117,7 +117,7 @@ Guarde a senha do backup. Não há recuperação dessa senha. Restaurar substitu
 
 Este repositório se chamava `onca3d-atualizacoes`. O endereço oficial agora é **PeraTV/jaguarlab**; links antigos são preservados para compatibilidade. Não envie tokens, senhas, documentos de clientes ou backups pessoais em issues, fotos ou comentários públicos.
 
-## Versão 0.5.3
+## Versão 0.5.4
 
 Corrige o instalador temporário ocupado no Windows, adota nomes **JaguarLab** nos downloads principais, atualiza o canal após a mudança de nome do repositório e amplia os tutoriais com vídeos e capítulos. Mantém a assinatura Android e as identidades internas para preservar instalações e registros existentes.
 

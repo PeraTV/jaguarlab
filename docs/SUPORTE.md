@@ -66,7 +66,7 @@ A rota até o servidor pode variar mesmo com Wi-Fi forte. As versões recentes p
 
 ## Erro EBUSY no Windows
 
-Veja [instalação e atualização](INSTALACAO.md#erro-ebusy-ao-atualizar). A versão 0.5.3 usa um caminho exclusivo por download. Uma versão antiga pode exigir a instalação manual por cima para receber a correção.
+Veja [instalação e atualização](INSTALACAO.md#erro-ebusy-ao-atualizar). A versão 0.5.4 usa um caminho exclusivo por download. Uma versão antiga pode exigir a instalação manual por cima para receber a correção.
 
 ## Quero limpar espaço do GitHub
 

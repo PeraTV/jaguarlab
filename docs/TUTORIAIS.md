@@ -2,7 +2,7 @@
 
 Telas demonstrativas e dados fictícios. Nenhum token real aparece nos vídeos.
 
-[Assistir ao guia completo — 4min40](https://raw.githubusercontent.com/PeraTV/jaguarlab/v0.5.3/guides/tutorial-completo.mp4)
+[Assistir ao guia completo — 3min53](https://raw.githubusercontent.com/PeraTV/jaguarlab/v0.5.4/guides/tutorial-completo.mp4)
 
 ## Capítulos e transcrição
 
@@ -10,89 +10,89 @@ Telas demonstrativas e dados fictícios. Nenhum token real aparece nos vídeos.
 
 Este é o Jaguar Lab, para organizar sua impressão 3D no celular, tablet e computador. Na visão geral, acompanhe lucro, vendas, custos, estoque e sua meta. Todos os valores deste vídeo são exemplos fictícios.
 
-### 00:13 — Sua empresa
+### 00:10 — Sua empresa
 
 Em Minha empresa, coloque seu nome e sua logo. O botão Dados da empresa abre informações extras, como endereço e CNPJ. Tudo é opcional. Essa foto identifica o seu negócio sem substituir a marca do aplicativo.
 
-### 00:26 — Clientes e contatos
+### 00:21 — Clientes e contatos
 
 Cadastre clientes com nome, telefone, e-mail e observações. Até o CPF é opcional. Ao vincular as vendas ao cliente, você acompanha o histórico e os valores recebidos. Arquivar preserva os registros.
 
-### 00:39 — Suas impressoras
+### 00:32 — Suas impressoras
 
 Escolha uma referência de impressora ou faça seu próprio cadastro. Revise bico, tamanho da mesa, consumo médio e custo por hora. Esses valores ajudam na calculadora, mas não substituem os perfis do fatiador.
 
-### 00:51 — Projetos e fotos
+### 00:43 — Projetos e fotos
 
 Em Projetos, organize cada peça com nome, observações e foto. Você também pode importar um STL ou 3MF para visualizar o modelo. O orçamento e o perfil de estimativa podem ficar vinculados ao projeto.
 
-### 01:05 — Prévia 3D e arquivos grandes
+### 00:54 — Prévia 3D e arquivos grandes
 
 Arraste para girar e amplie a prévia. O limite é de um giga por arquivo, sujeito à memória do aparelho. STL grande precisa ser binário e usa prévia simplificada. No 3MF grande, usamos a imagem incluída, quando disponível.
 
-### 01:19 — Carretéis e estoque
+### 01:06 — Carretéis e estoque
 
 Cadastre cada carretel com marca, linha, material, cor, peso e preço. Abra o rolo para conferir o consumo e quanto resta. O alerta ajuda a perceber quando está acabando. A baixa acontece ao registrar a impressão.
 
-### 01:32 — Calculadora de custos
+### 01:16 — Calculadora de custos
 
 Na calculadora, informe o peso, o tempo e os custos. Você pode usar um carretel ou informar o preço por quilo. O projeto e o arquivo 3D são opcionais. Inclua energia, máquina, trabalho, embalagem e taxas.
 
-### 01:45 — Tempo e material do fatiador
+### 01:27 — Tempo e material do fatiador
 
 Para usar os números do seu fatiador, exporte um G-code de texto e importe aqui. O app lê os totais disponíveis. Um STL sozinho oferece apenas uma aproximação: confira peso e tempo no fatiador antes de cobrar.
 
-### 01:58 — Quanto cobrar pela peça
+### 01:38 — Quanto cobrar pela peça
 
 Escolha seu percentual de ganho. Cem por cento sobre o custo dobra o valor antes das taxas. Na sugestão de orçamento, escolha o tipo de peça e inclua o trabalho adicional. Revise a referência e aplique quando fizer sentido.
 
-### 02:11 — Orçamento para o cliente
+### 01:49 — Orçamento para o cliente
 
 Escolha o cliente e complete prazo, pagamento e validade. Copie o texto ou abra o WhatsApp para revisar e enviar. Os custos internos e o CPF ficam fora da mensagem. Salvar orçamento não desconta filamento.
 
-### 02:24 — Produção, falhas e estorno
+### 02:00 — Produção, falhas e estorno
 
 Depois de imprimir, registre o consumo, incluindo suportes e perdas. Uma falha também gasta material. Para corrigir um lançamento, use Estornar, que devolve o consumo ao estoque. Se houver venda vinculada, cancele a venda primeiro.
 
-### 02:38 — Vendas e recebimentos
+### 02:12 — Vendas e recebimentos
 
 Em Nova venda, selecione uma produção concluída, quantidade, cliente e valor. Marque o pagamento quando receber. Você pode vender parte de um lote. Cancelar a venda não devolve filamento, porque a peça já foi produzida.
 
-### 02:51 — Relatórios e rankings
+### 02:22 — Relatórios e rankings
 
 Nos relatórios, filtre o período e compare faturamento, lucro, energia e consumo de material. Veja as peças mais vendidas e os melhores dias. Compra de rolo e material consumido são medidas diferentes: evite lançar o mesmo custo duas vezes.
 
-### 03:05 — Energia da sua região
+### 02:34 — Energia da sua região
 
 Nas configurações, escolha estado, cidade e distribuidora. A Light também está disponível na consulta. A referência da ANEEL não inclui impostos e bandeiras: confira sua conta e ajuste o valor final por quilowatt-hora.
 
-### 03:19 — Backup protegido
+### 02:45 — Backup protegido
 
 Exporte um backup com senha e guarde em outro lugar. Ele leva cadastros, fotos, custos e histórico. Os modelos 3D ficam no aparelho: guarde os originais separadamente e reimporte depois de restaurar em outro dispositivo.
 
-### 03:32 — Seu GitHub privado
+### 02:57 — Seu GitHub privado
 
 O backup online usa o seu próprio repositório privado e o seu token. Os dados não vão para a conta do criador. O guia de backup ensina a configuração. Guarde a senha: sem ela, não é possível recuperar o arquivo.
 
-### 03:45 — Cores e desenho do jaguar
+### 03:07 — Cores e desenho do jaguar
 
 Em Cores, escolha o fundo e o destaque. Se quiser, ative Logo acompanha a cor do tema para mudar o desenho do jaguar. A foto da sua empresa mantém as cores originais. Toque em Salvar cores para guardar a escolha.
 
-### 03:57 — Atualizações do aplicativo
+### 03:18 — Atualizações do aplicativo
 
 Toque em Atualizar para procurar uma versão nova. O app baixa, confere o arquivo e abre o instalador. A confirmação final é feita pelo Android ou Windows. Instale por cima, sem desinstalar, para preservar os registros.
 
-### 04:11 — Colaboração voluntária
+### 03:29 — Colaboração voluntária
 
 O menu Colaboração é para quem deseja apoiar o projeto. A contribuição é voluntária e não é necessária para usar os recursos. Antes de confirmar qualquer pagamento, confira o destinatário no aplicativo do seu banco.
 
-### 04:23 — Tutoriais e uso sem internet
+### 03:39 — Tutoriais e uso sem internet
 
 Na aba Tutoriais, pesquise a função que deseja usar. Os textos funcionam sem internet; os vídeos precisam de conexão. Cadastros e cálculos ficam no aparelho, e não existe sincronização automática entre dispositivos. Pronto: comece com seus carretéis e um orçamento.
 
 ## Backup privado e token
 
-[Assistir ao tutorial atualizado](https://raw.githubusercontent.com/PeraTV/jaguarlab/v0.5.3/guides/tutorial-backup.mp4)
+[Assistir ao tutorial atualizado](https://raw.githubusercontent.com/PeraTV/jaguarlab/v0.5.4/guides/tutorial-backup.mp4)
 
 ### 1. Backup na sua própria conta
 

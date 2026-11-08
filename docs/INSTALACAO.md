@@ -4,7 +4,7 @@
 
 ## Android — celular e tablet
 
-Baixe **JaguarLab-0.5.3-Android.apk** nos downloads oficiais. Requer Android 7 ou superior. Abra o arquivo, autorize a instalação pela origem usada se o Android solicitar e confirme a instalação no sistema. Em uma atualização, instale por cima; não desinstale para trocar de versão.
+Baixe **JaguarLab-0.5.4-Android.apk** nos downloads oficiais. Requer Android 7 ou superior. Abra o arquivo, autorize a instalação pela origem usada se o Android solicitar e confirme a instalação no sistema. Em uma atualização, instale por cima; não desinstale para trocar de versão.
 
 Dentro do app, toque em Atualizar e Verificar atualização. Quando houver uma versão nova, baixe e aguarde a conferência de tamanho, integridade, pacote, versão e assinatura. O app abre a tela de instalação; a confirmação final é sua no Android. Se for necessário autorizar a origem, volte ao app após liberar. O botão Instalar continua como alternativa se o sistema impedir a abertura automática.
 
@@ -12,9 +12,9 @@ A velocidade depende do caminho até o GitHub e não apenas da intensidade do Wi
 
 ## Windows 64 bits
 
-Baixe **JaguarLab-0.5.3-Setup.exe**. Feche outra instalação que esteja aberta e siga o instalador. Ao atualizar, use a mesma instalação para preservar os registros. O aplicativo mantém a identidade interna e a pasta de dados das versões anteriores.
+Baixe **JaguarLab-0.5.4-Setup.exe**. Feche outra instalação que esteja aberta e siga o instalador. Ao atualizar, use a mesma instalação para preservar os registros. O aplicativo mantém a identidade interna e a pasta de dados das versões anteriores.
 
-O botão Atualizar consulta o canal público, guarda uma cópia local, baixa e confere o instalador antes de abri-lo. A partir de 0.5.3, cada download usa uma pasta temporária exclusiva para evitar sobrescrever um EXE antigo em uso. Bloqueios transitórios de arquivo têm tentativas limitadas; o app não desativa verificações do Windows nem encerra outros processos.
+O botão Atualizar consulta o canal público, guarda uma cópia local, baixa e confere o instalador antes de abri-lo. A partir de 0.5.4, cada download usa uma pasta temporária exclusiva para evitar sobrescrever um EXE antigo em uso. Bloqueios transitórios de arquivo têm tentativas limitadas; o app não desativa verificações do Windows nem encerra outros processos.
 
 ## Erro EBUSY ao atualizar
 

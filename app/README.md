@@ -1,4 +1,4 @@
-# JAGUAR LAB 0.5.3
+# JAGUAR LAB 0.5.4
 
 Aplicativo local de gestão de impressão 3D para Android, tablet e Windows. Projeto React/Vite, Capacitor e Electron. Distribuição pública: [PeraTV/jaguarlab](https://github.com/PeraTV/jaguarlab).
 
