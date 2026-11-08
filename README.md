@@ -1,17 +1,23 @@
 # ONÇA 3D
 
-Aplicativo local para gestão de impressão 3D em Android, tablets e Windows. Visual amarelo e preto, projetos com foto, carretéis por cor e marca, calculadora de custos, produção, vendas, rankings e backup individual criptografado.
+Aplicativo local para impressão 3D em Android, tablets e Windows, com visual amarelo e preto e a identidade de onça escolhida pelo criador.
 
-## Prévia 0.1.0
+## Versão 0.2.0
 
-Os instaladores validados serão disponibilizados em [Releases](https://github.com/PeraTV/onca3d-atualizacoes/releases). Esta é uma prévia para avaliação; confira as limitações e os testes realizados no [guia completo](app/README.md).
+[Baixar os aplicativos](https://github.com/PeraTV/onca3d-atualizacoes/releases) · [Guia completo](app/README.md)
 
-O código-fonte está em [app](app). Não há hospedagem de servidor próprio: os dados ficam no aparelho. IBGE e ANEEL fornecem referências online; cada usuário pode conectar seu próprio repositório privado para backup.
+- Projetos com fotos e arquivos STL/3MF, prévia 3D, rotação e zoom.
+- Tempo e material vindos de arquivos fatiados compatíveis; estimativa geométrica opcional e aproximada para modelos sem fatiamento.
+- Carretéis por cor, marca e modelo, saldo e consumo automático por impressão.
+- Calculadora de custos, vendas, pagamentos, metas e rankings.
+- Referência de energia pela ANEEL, incluindo Light, e cidades pelo IBGE.
+- Tutoriais dentro do app e guia passo a passo para backup individual.
+- Menu Colaboração com QR Code informado pelo criador; doação voluntária.
 
-## Atualizações e privacidade
+Os dados ficam no aparelho. Não há servidor próprio. Cada usuário pode conectar seu próprio repositório privado para backup criptografado; o token não entra no backup nem no canal público de atualizações. Fotos e modelos 3D também são incluídos.
 
-`updates/stable.json` é o canal de versões consultado pelo aplicativo. As atualizações usam os instaladores deste repositório e verificam seus hashes. No Android, o sistema pede confirmação da instalação. Preserve a assinatura e a identidade do aplicativo ao publicar versões.
+## Atualizar
 
-Este repositório público não recebe backups, fotos pessoais, registros de vendas ou tokens. As credenciais individuais ficam fora do código e do canal de atualizações. Backup e restauração não equivalem a sincronização simultânea entre aparelhos.
+Abra Configurações → Atualizações. O aplicativo consulta `updates/stable.json`, baixa e verifica o instalador e abre a instalação do sistema. Instale por cima, sem desinstalar. A identidade do aplicativo, a base local e a assinatura Android são preservadas.
 
-Veja [instruções de uso e manutenção](app/README.md).
+Modelos: até 20 MB e 250 mil triângulos. A estimativa geométrica não substitui um fatiador. A tarifa da ANEEL não inclui todos os adicionais da conta. Não há sincronização automática entre aparelhos. Leia o guia antes de usar a prévia em produção.

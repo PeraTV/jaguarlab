@@ -1,5 +1,5 @@
 {
-  "version": "0.1.0",
-  "sha256": "7e7e7c2b84aea6c76b470e063da83d9e422d4141dfee100870c3793a4da79ca3",
-  "note": "APK assinado localmente com chave exclusiva do ONÇA 3D. A chave privada não está neste repositório."
+  "version": "0.2.0",
+  "sha256": "36f5f18982231b7dba12a30a7e4d56b50976c16d454a39d2d747c79f1dabdeeb",
+  "note": "APK assinado com a mesma chave exclusiva do ONÇA 3D. Chaves e senhas não estão no repositório."
 }

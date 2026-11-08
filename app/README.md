@@ -1,6 +1,18 @@
-# ONÇA 3D — prévia 0.1.0
+# ONÇA 3D — prévia 0.2.0
 
 Aplicativo local de gestão para impressão 3D, com identidade amarela e preta. Projeto em `F:\Projetos\Onca3D` no computador do mantenedor.
+
+## Novidades da versão 0.2.0
+
+- Interface refeita seguindo o conceito aprovado: preto neutro, amarelo, cartões compactos, lista de filamentos e quatro atalhos no celular. Carretéis redesenhados e marca escolhida pelo usuário no perfil.
+- Importação local de STL (binário/ASCII) e 3MF, prévia 3D com rotação e zoom e miniatura automática do projeto. Os arquivos entram no backup.
+- Limite por modelo: 20 MB, até 250 mil triângulos; expansão de arquivos 3MF limitada a 64 MB. Extensões avançadas de 3MF podem não ser compatíveis. STL é interpretado em milímetros.
+- Tempo e gramas são lidos de metadados fatiados compatíveis, como slice_info.config e cabeçalhos G-code dentro do 3MF. Mesas são mostradas separadamente. Um STL ou 3MF não fatiado não contém esses resultados.
+- Estimativa geométrica opcional para malhas fechadas, com perfil ajustável de densidade, preenchimento, casca, fluxo e suportes adicionais. É uma aproximação e não executa fatiamento, trajetórias, acelerações ou geração real de suportes. Confirme no fatiador antes de registrar consumo.
+- Aba Tutoriais com explicação de cada função e passo a passo de backup junto dos campos de configuração. Aceita o link completo do repositório individual.
+- Light identificada como “Light — Rio de Janeiro (LIGHT SESA)” e destacada na lista quando RJ é selecionado.
+- Meta mensal configurável e menu Colaboração com o QR Code fornecido pelo criador, reutilizado do PeraTV. Doações voluntárias, sem processamento de pagamentos no app.
+- Dados, identidade de instalação e assinatura Android preservados ao atualizar.
 
 ## Recursos desta prévia
 
@@ -53,4 +65,4 @@ O mantenedor publica os instaladores em Releases e atualiza `updates/stable.json
 
 Testes automatizados cobrem cálculo, baixa de estoque, consumo duplicado, falhas, estornos, vendas parciais, integridade de backup, senha incorreta, transações, tarifas e restrição dos endereços de atualização. O fluxo de cadastro e produção foi conferido no navegador.
 
-Esta é uma prévia para avaliação. A assinatura Windows não usa certificado comercial; o sistema pode pedir confirmação do editor. A instalação Android deve ser confirmada no aparelho. Ainda é necessário testar em aparelhos físicos e testar o ciclo de atualização entre duas versões instaladas. Não há controle direto da impressora, leitura de G-code/STL nem sincronização simultânea nesta prévia.
+Esta é uma prévia para avaliação. A assinatura Windows não usa certificado comercial; o sistema pode pedir confirmação do editor. A instalação Android deve ser confirmada no aparelho. Ainda é necessário testar em aparelhos físicos e testar o ciclo de atualização entre duas versões instaladas. Não há controle direto da impressora, fatiamento completo nem sincronização simultânea nesta prévia.

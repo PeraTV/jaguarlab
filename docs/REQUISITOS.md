@@ -1,24 +1,9 @@
-# Requisitos do ONÇA 3D
+# ONÇA 3D — estado da implementação 0.2.0
 
-Estado: requisitos acordados para desenvolvimento; recursos ainda não implementados.
+Implementados: interface responsiva preta/amarela seguindo o conceito, logo no perfil, projetos com foto e STL/3MF, prévia 3D, carretéis coloridos por marca/linha/material, calculadora, produção com consumo/estorno, vendas, pagamentos, rankings, metas, cidades, tarifa residencial ANEEL/Light, backup local e individual criptografado, atualização pelo canal do GitHub, tutoriais e colaboração com QR autorizado.
 
-- Identidade visual original amarela e preta, com logo de onça; interface adaptada para Android, tablet e PC Windows.
-- Projetos com imagens próprias, descrição, quantidade e tempo de impressão.
-- Cadastro individual de carretéis: representação da cor, marca, linha/modelo, tipo de material, custo, peso inicial, consumido e restante.
-- Seleção de um ou vários carretéis por impressão. Registrar a produção realizada baixa o consumo uma única vez; orçamento não baixa estoque. Registrar perdas e falhas; correções devem manter histórico e ajustar o saldo sem duplicação.
-- Calculadora com material, energia, máquina, mão de obra, embalagem, taxas e margem. Separar gasto de material de custo total e receita de lucro.
-- Energia: estado, cidade, confirmação da distribuidora e modalidade, tarifa de referência com fonte e data, ajuste manual e consumo médio da impressora. Preservar a tarifa aplicada nos registros históricos; uso offline da última referência. Consultas online precisam de fonte validada, sem prometer valor final exato apenas pela cidade.
-- Vendas, pagamentos e relatórios por período. Rankings de produtos, melhores períodos de vendas, faturamento, lucro e gastos com material por marca e cor.
-- Dados e imagens locais, exportação e restauração completa. Provedor online e credenciais individuais de backup; não enviar dados pessoais para este repositório.
-- Atualizações pelo GitHub do mantenedor com botão no aplicativo; checagem de integridade, preservação de dados e cópia de segurança antes de migrações. Assinaturas e credenciais de publicação não devem entrar no repositório.
-- Sem servidor próprio para operação local; internet permitida para referências, backup e atualizações.
+Tempo e material de 3MF são aproveitados quando há metadados de fatiamento compatíveis. Modelos não fatiados têm apenas estimativa geométrica opcional, com parâmetros explícitos, e não substituem o fatiador.
 
-## Decisões pendentes
+Sem servidor próprio. Backups não equivalem a sincronização automática. Sem controle direto da impressora ou fatiamento completo. Assinaturas e credenciais privadas ficam fora do repositório.
 
-- Provedor de backup individual e sua forma de conexão.
-- Necessidade de sincronização entre aparelhos e regras para alterações simultâneas.
-- Tecnologia de implementação, assinatura e empacotamento.
-
-## Critérios para a primeira versão pública
-
-Validar produção e reversão de consumo sem duplicação, cálculo de custos, persistência das imagens, restauração completa, isolamento de credenciais e atualização real em Android e Windows antes de oferecer instaladores neste canal.
+Validação: 21 testes automatizados, incluindo modelos, medidas, metadados, integridade e restauração de backups. Telas e prévia 3D conferidas em dimensões de PC, tablet e celular. Validar em aparelhos físicos antes de uso definitivo.

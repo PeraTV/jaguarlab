@@ -12,3 +12,11 @@ console.log('Android preparado: identidade, versão e atualização integrada.')
 
 fs.writeFileSync(`${dir}/res/mipmap-anydpi/ic_launcher.xml`,fs.readFileSync(`${dir}/res/drawable/onca.xml`));
 fs.writeFileSync(`${dir}/res/mipmap-anydpi/ic_launcher_round.xml`,fs.readFileSync(`${dir}/res/drawable/onca.xml`));
+
+fs.copyFileSync('public/onca-foreground.png',`${dir}/res/drawable/onca_mark.png`);
+fs.writeFileSync(`${dir}/res/drawable/onca.xml`, '<bitmap xmlns:android="http://schemas.android.com/apk/res/android" android:src="@drawable/onca_mark" android:gravity="center" />');
+fs.writeFileSync(`${dir}/res/values/onca_colors.xml`,'<resources><color name="onca_background">#101114</color></resources>');
+for(const name of ['ic_launcher','ic_launcher_round']){
+ fs.writeFileSync(`${dir}/res/mipmap-anydpi-v26/${name}.xml`,'<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android"><background android:drawable="@color/onca_background"/><foreground android:drawable="@drawable/onca"/></adaptive-icon>');
+ fs.writeFileSync(`${dir}/res/mipmap-anydpi/${name}.xml`,fs.readFileSync(`${dir}/res/drawable/onca.xml`));
+}
