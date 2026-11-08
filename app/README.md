@@ -90,3 +90,6 @@ O botão Cores abre dois controles independentes para fundo e destaque. Há pale
 A prévia permite escolher altura de camada, material, preenchimento, número de paredes e velocidade média. Densidade, largura da linha e limite de fluxo ficam em Avançado com orientações. O fluxo médio é aproximado por largura × altura × velocidade, limitado pelo teto volumétrico. Não replica trajetórias, acelerações, tempos mínimos de camada nem os perfis oficiais de impressoras.
 
 A calibração usa tempo e peso do mesmo modelo no fatiador. Seus fatores ficam vinculados ao perfil e à peça; mudar as opções desativa a calibração. Salvar perfil mantém as opções e a referência no projeto e no backup, sem alterar estoque. Para usar os totais do fatiador, importe G-code. Corrigidas as cores do botão em hover/toque e do fundo do rodapé fixo de Nova venda.
+
+### 0.4.2 — consulta de atualização
+Verificação e instalação consultam o arquivo de canal pela API pública de conteúdo do GitHub, decodificando o JSON retornado em Base64. A consulta não depende da cópia em cache do domínio raw. Não usa token pessoal e respeita falhas/limites da API: se a consulta falhar, não informa que o app está atualizado. A validação do endereço oficial dos instaladores e do SHA-256 continua ativa.

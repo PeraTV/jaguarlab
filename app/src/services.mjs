@@ -1,10 +1,11 @@
+import {readUpdateChannel} from './channel-fresh.mjs';
 import {decodeJsonResponse,availableUpdate} from './update-channel.mjs';
 import {tariffReferences} from './tariffs.mjs';
 import {Capacitor,CapacitorHttp,registerPlugin} from '@capacitor/core';
 import {VERSION} from './domain.mjs';
 export async function request(url,options={}){if(window.oncaDesktop?.publicGet&&!options.method&&!options.headers?.Authorization)return window.oncaDesktop.publicGet(url);if(Capacitor.isNativePlatform()){const r=await CapacitorHttp.request({url,method:options.method||'GET',headers:options.headers||{},data:options.body?JSON.parse(options.body):undefined,connectTimeout:20000,readTimeout:30000,responseType:'json'});if(r.status<200||r.status>=300)throw Error(`Serviço respondeu ${r.status}. Confira conexão e permissões.`);return decodeJsonResponse(r.data);}const r=await fetch(url,{...options,signal:AbortSignal.timeout(30000)});if(!r.ok)throw Error(`Serviço respondeu ${r.status}. Confira conexão e permissões.`);return r.json();}
 export async function cities(uf){return request(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${encodeURIComponent(uf)}/municipios?orderBy=nome`);}
-export async function checkUpdate(){const manifest=await request('https://raw.githubusercontent.com/PeraTV/onca3d-atualizacoes/main/updates/stable.json?check='+Date.now(),{headers:{Accept:'application/json'}});return availableUpdate(manifest,VERSION);}
+export async function checkUpdate(){const manifest=await readUpdateChannel(request);return availableUpdate(manifest,VERSION);}
 export async function githubBackup({token,repo,body,restore=false}){
   if(!/^[\w-]+\/[\w.-]+$/.test(repo)||repo.toLowerCase()==='peratv/onca3d-atualizacoes')throw Error('Informe seu repositório privado de backup, diferente do canal de atualizações.');
   const headers={Authorization:`Bearer ${token}`,Accept:'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'};

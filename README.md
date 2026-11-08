@@ -2,9 +2,9 @@
 
 Gestão local de impressão 3D para Android, tablets e Windows.
 
-## Versão 0.4.1
+## Versão 0.4.2
 
-[Baixar Android e Windows](https://github.com/PeraTV/onca3d-atualizacoes/releases/tag/v0.4.1) · [Guia completo](app/README.md)
+[Baixar Android e Windows](https://github.com/PeraTV/onca3d-atualizacoes/releases/tag/v0.4.2) · [Guia completo](app/README.md)
 
 - Duas paletas independentes para fundo e destaque, salvas no aparelho e no backup.
 - Botões Cores, Atualizar e Colaboração visíveis no topo.
@@ -29,3 +29,7 @@ Tempo/material do G-code continuam sendo estimativas do fatiador. STL isolado n�
 ### Ajustes desta versão
 
 Cores dos botões e do rodapé fixo corrigidas. A estimativa STL oferece altura de camada, material, paredes, preenchimento e velocidade média, com opções avançadas explicadas. A calibração com valores do fatiador é vinculada à peça e ao perfil e pode ser salva no backup. Não executa fatiamento completo; importar G-code usa os totais informados pelo fatiador.
+
+### Consulta de versões corrigida
+
+Verificação e instalação leem o canal pela API pública de conteúdo do GitHub, sem depender da cópia antiga do endereço raw. Não requer token pessoal. Falhas e limites de consulta não são apresentados como aplicativo atualizado. Se a versão anterior ainda consultar a lista antiga, instale o APK novo por cima uma vez, sem desinstalar.
