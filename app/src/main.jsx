@@ -1,4 +1,4 @@
-import Community,{CommunityCard} from './Community.jsx';
+import Community from './Community.jsx';
 import {Send} from 'lucide-react';
 import GithubBackupPanel from './GithubBackupPanel.jsx';
 import PriceAdvice from './PriceAdvice.jsx';
@@ -50,7 +50,7 @@ return <ErrorContext.Provider value={error}><div className="shell"><svg width="0
 {page==='company'&&<CompanyProfile state={state} mutate={mutate} run={run} busy={busy}/>}
 {page==='customers'&&<CustomersPage state={state} mutate={mutate} run={run} busy={busy} go={go}/>}
 {page==='printers'&&<PrintersPage state={state} mutate={mutate} run={run} busy={busy}/>}
-{page==='home'&&<><CommunityCard/><Dashboard state={state} r={r} low={low} go={go} newProject={()=>setModal('project')}/></>}
+{page==='home'&&<Dashboard state={state} r={r} low={low} go={go} newProject={()=>setModal('project')}/>}
 {page==='spools'&&<Spools state={state} edit={s=>setModal({type:'spool',item:s})} details={s=>setModal({type:'spool-detail',item:s})}/>}
 {page==='projects'&&<Projects state={state} edit={p=>setModal({type:'project',item:p})}/>}
 {page==='calculator'&&<CalculatorPage state={state} mutate={mutate} run={run} busy={busy} go={go}/>}

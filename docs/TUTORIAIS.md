@@ -2,7 +2,7 @@
 
 Telas demonstrativas e dados fictícios. Nenhum token real aparece nos vídeos.
 
-[Assistir ao guia completo — 3min53](https://raw.githubusercontent.com/PeraTV/jaguarlab/v0.5.6/guides/tutorial-completo.mp4)
+[Assistir ao guia completo — 3min53](https://raw.githubusercontent.com/PeraTV/jaguarlab/v0.5.7/guides/tutorial-completo.mp4)
 
 ## Capítulos e transcrição
 
@@ -92,7 +92,7 @@ Na aba Tutoriais, pesquise a função que deseja usar. Os textos funcionam sem i
 
 ## Backup privado e token
 
-[Assistir ao tutorial atualizado](https://raw.githubusercontent.com/PeraTV/jaguarlab/v0.5.6/guides/tutorial-backup.mp4)
+[Assistir ao tutorial atualizado](https://raw.githubusercontent.com/PeraTV/jaguarlab/v0.5.7/guides/tutorial-backup.mp4)
 
 ### 1. Backup na sua própria conta
 
@@ -190,7 +190,7 @@ Sem Manter conectado, o token fica somente na sessão. Se você marcar Manter co
 
 Em Expiration, escolha uma data ou **No expiration**, quando disponível. Com data, substitua o token quando vencer. No expiration significa sem vencimento programado, não acesso garantido para sempre: o token pode ser revogado e o GitHub pode removê-lo após um ano sem uso. Veja [validade e revogação de tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/token-expiration-and-revocation). Manter conectado não renova o token.
 
-## macOS e Linux (0.5.6)
+## macOS e Linux (0.5.7)
 
 - Mac Intel: **macOS-x64.dmg**. Mac com chip Apple M1 ou posterior: **macOS-arm64.dmg**. Abra o DMG e arraste JAGUAR LAB para Aplicativos. Para atualizar, feche o app e substitua a cópia anterior. Os dados ficam fora do aplicativo.
 - O pacote Mac usa assinatura ad hoc, sem certificado Developer ID nem notarização da Apple. O macOS pode bloquear a primeira abertura e exigir sua autorização nas opções de segurança do sistema. Não é uma versão da App Store. Não desative as proteções globais do sistema.
