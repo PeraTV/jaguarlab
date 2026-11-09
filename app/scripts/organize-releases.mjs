@@ -16,6 +16,6 @@ function older(value){if(!/^v\d+\.\d+\.\d+$/.test(value))return false;const a=va
 const snapshot=releases.map(r=>({id:r.id,tag:r.tag_name,name:r.name,draft:r.draft,prerelease:r.prerelease}));fs.mkdirSync('release',{recursive:true});fs.writeFileSync('release/release-visibility-before.json',JSON.stringify(snapshot,null,2));
 const banner=`> **VERSÃO ATUAL PARA DOWNLOAD: ${version}**\n> Use os arquivos desta versão. Releases anteriores foram ocultadas da página pública; as tags e os tutoriais foram preservados. Esta distribuição continua sendo uma prévia para avaliação.\n\n`;
 const body=(current.body||'').replace(/^> \*\*VERSÃO ATUAL PARA DOWNLOAD:[\s\S]*?\n\n/,'');
-await api(`releases/${current.id}`,'PATCH',{name:`JAGUAR LAB ${version} — VERSÃO ATUAL (prévia)`,body:banner+body});
+await api(`releases/${current.id}`,'PATCH',{name:`JAGUAR LAB ${version} — VERSÃO ATUAL (prévia)`,body:banner+body,prerelease:false,make_latest:'true'});
 let hidden=0;for(const release of releases.filter(r=>!r.draft&&older(r.tag_name))){await api(`releases/${release.id}`,'PATCH',{draft:true});hidden++;console.log(`Oculta da página pública, sem apagar tag: ${release.tag_name}`);}
 console.log(`Versão visível: ${tag}. Releases antigas ocultadas: ${hidden}. Tags, código, vídeos e o canal atual preservados.`);

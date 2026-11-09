@@ -1,3 +1,5 @@
+import Community,{CommunityCard} from './Community.jsx';
+import {Send} from 'lucide-react';
 import GithubBackupPanel from './GithubBackupPanel.jsx';
 import PriceAdvice from './PriceAdvice.jsx';
 import {CompanyProfile,CustomersPage,PrintersPage} from './BusinessPages.jsx';
@@ -23,7 +25,7 @@ import ModelViewer,{importModel} from './ModelViewer.jsx';
 import {estimateGeometry,formatTime} from './model-tools.mjs';
 import Tutorials,{BackupGuide} from './Tutorials.jsx';
 
-const NAV=[['home','Visão geral',House],['calculator','Calculadora',Calculator],['company','Minha empresa',Building2],['customers','Clientes',Users],['printers','Impressoras',Printer],['projects','Projetos',FolderOpen],['spools','Filamentos',Layers],['production','Produção',Printer],['sales','Vendas',ShoppingBag],['reports','Relatórios',ChartNoAxesCombined],['tutorials','Tutoriais',BookOpen],['collaboration','Colaboração',Heart],['appearance','Personalizar cores',Palette],['updates','Atualizações',RefreshCw],['settings','Configurações',Settings]];
+const NAV=[['home','Visão geral',House],['calculator','Calculadora',Calculator],['company','Minha empresa',Building2],['customers','Clientes',Users],['printers','Impressoras',Printer],['projects','Projetos',FolderOpen],['spools','Filamentos',Layers],['production','Produção',Printer],['sales','Vendas',ShoppingBag],['reports','Relatórios',ChartNoAxesCombined],['tutorials','Tutoriais',BookOpen],['community','Grupo no Telegram',Send],['collaboration','Colaboração',Heart],['appearance','Personalizar cores',Palette],['updates','Atualizações',RefreshCw],['settings','Configurações',Settings]];
 const COLORS=['#ffca08','#171717','#faf8ed','#f57c00','#ed407a','#e53935','#5e35b1','#1e88e5','#00acc1','#43a047','#8d6e63','#90a4ae'];
 const ErrorContext=createContext('');
 const UF=['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'];
@@ -48,7 +50,7 @@ return <ErrorContext.Provider value={error}><div className="shell"><svg width="0
 {page==='company'&&<CompanyProfile state={state} mutate={mutate} run={run} busy={busy}/>}
 {page==='customers'&&<CustomersPage state={state} mutate={mutate} run={run} busy={busy} go={go}/>}
 {page==='printers'&&<PrintersPage state={state} mutate={mutate} run={run} busy={busy}/>}
-{page==='home'&&<Dashboard state={state} r={r} low={low} go={go} newProject={()=>setModal('project')}/>}
+{page==='home'&&<><CommunityCard/><Dashboard state={state} r={r} low={low} go={go} newProject={()=>setModal('project')}/></>}
 {page==='spools'&&<Spools state={state} edit={s=>setModal({type:'spool',item:s})} details={s=>setModal({type:'spool-detail',item:s})}/>}
 {page==='projects'&&<Projects state={state} edit={p=>setModal({type:'project',item:p})}/>}
 {page==='calculator'&&<CalculatorPage state={state} mutate={mutate} run={run} busy={busy} go={go}/>}
@@ -56,6 +58,7 @@ return <ErrorContext.Provider value={error}><div className="shell"><svg width="0
 {page==='sales'&&<Sales state={state} go={go} add={()=>setModal('sale')} mutate={mutate} run={run} confirm={setModal}/>}
 {page==='reports'&&<Reports state={state} addExpense={()=>setModal('expense')} mutate={mutate} run={run}/>}
 {page==='tutorials'&&<Tutorials/>}
+{page==='community'&&<Community/>}
 {page==='collaboration'&&<Collaboration/>}
 {page==='settings'&&<SettingsPage state={state} mutate={mutate} run={run} notice={setNotice} confirm={setModal}/>}
 </div><footer>JAGUAR LAB <span>Feito para quem transforma ideias em peças.</span><b>v{VERSION}</b></footer></main>

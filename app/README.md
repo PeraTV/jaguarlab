@@ -1,4 +1,4 @@
-# JAGUAR LAB 0.5.5
+# JAGUAR LAB 0.5.6
 
 Aplicativo local de gestão de impressão 3D para Android, tablet e Windows. Projeto React/Vite, Capacitor e Electron. Distribuição pública: [PeraTV/jaguarlab](https://github.com/PeraTV/jaguarlab).
 
@@ -33,7 +33,7 @@ O aplicativo funciona sem servidor próprio. Backups opcionais são criptografad
 
 O modo de demonstração para filmagem só existe no servidor de desenvolvimento, com dados fictícios e banco separado. Não inclui dados de usuários nem credenciais.
 
-## macOS e Linux (0.5.5)
+## macOS e Linux (0.5.6)
 
 - Mac Intel: **macOS-x64.dmg**. Mac com chip Apple M1 ou posterior: **macOS-arm64.dmg**. Abra o DMG e arraste JAGUAR LAB para Aplicativos. Para atualizar, feche o app e substitua a cópia anterior. Os dados ficam fora do aplicativo.
 - O pacote Mac usa assinatura ad hoc, sem certificado Developer ID nem notarização da Apple. O macOS pode bloquear a primeira abertura e exigir sua autorização nas opções de segurança do sistema. Não é uma versão da App Store. Não desative as proteções globais do sistema.

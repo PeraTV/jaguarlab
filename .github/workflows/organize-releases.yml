@@ -31,4 +31,4 @@ jobs:
           path: app/release/release-visibility-before.json
           if-no-files-found: ignore
           retention-days: 30
-
+# Destaca a publicação atual no atalho releases/latest; o aviso de prévia permanece no título e no texto.

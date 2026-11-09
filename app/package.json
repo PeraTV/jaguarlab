@@ -1,9 +1,9 @@
 {
   "name": "onca3d",
-  "version": "0.5.5",
+  "version": "0.5.6",
   "private": true,
   "type": "module",
-  "description": "GestÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o local de impressÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â£o 3D",
+  "description": "GestÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â£o local de impressÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â£o 3D",
   "author": "JAGUAR LAB",
   "main": "electron/main.cjs",
   "scripts": {
