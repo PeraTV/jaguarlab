@@ -20,3 +20,4 @@ gh(['release','upload',tag,...Object.values(files),legacy,'release/SHA256SUMS.tx
 gh(['release','edit',tag,'--draft=false','--prerelease','--notes-file','release/NOTAS.md']);
 fs.writeFileSync('../updates/stable.json',JSON.stringify({schemaVersion:1,appId:'onca3d',channel:'preview',available:true,status:'preview',release:{version,notes:'Versão multiplataforma. Faça backup antes de atualizar.',publishedAt:new Date().toISOString()},platforms},null,2)+'\n');
 execFileSync('git',['config','user.name','github-actions[bot]']);execFileSync('git',['config','user.email','41898282+github-actions[bot]@users.noreply.github.com']);execFileSync('git',['add','../updates/stable.json']);execFileSync('git',['commit','-m',`Publica canal JAGUAR LAB ${version}`]);execFileSync('git',['push']);
+execFileSync(process.execPath,['scripts/organize-releases.mjs'],{stdio:'inherit'});
