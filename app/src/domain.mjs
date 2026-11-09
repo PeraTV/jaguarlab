@@ -1,5 +1,5 @@
 import {validateBusiness,customerLabel} from './business-domain.mjs';
-export const VERSION='0.5.7';
+export const VERSION='0.5.8';
 export const uid=()=>crypto.randomUUID();
 export const today=()=>new Date().toLocaleDateString('en-CA');
 const number=(value,label,min=0)=>{const n=Number(value);if(!Number.isFinite(n)||n<min)throw Error(`${label}: informe um valor válido, mínimo ${min}.`);return n;};

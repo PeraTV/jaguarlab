@@ -14,12 +14,12 @@ Grupo da comunidade: novidades, dúvidas e sugestões. Participação opcional. 
 
 | Plataforma | Download oficial |
 | --- | --- |
-| Android — celular e tablet | [Baixar JaguarLab 0.5.7 — APK](https://github.com/PeraTV/jaguarlab/releases/download/v0.5.7/JaguarLab-0.5.7-Android.apk) |
-| Windows 64 bits | [Baixar JaguarLab 0.5.7 — instalador](https://github.com/PeraTV/jaguarlab/releases/download/v0.5.7/JaguarLab-0.5.7-Setup.exe) |
-| macOS — Intel | [Baixar DMG Intel](https://github.com/PeraTV/jaguarlab/releases/download/v0.5.7/JaguarLab-0.5.7-macOS-x64.dmg) |
-| macOS — Apple Silicon | [Baixar DMG Apple Silicon](https://github.com/PeraTV/jaguarlab/releases/download/v0.5.7/JaguarLab-0.5.7-macOS-arm64.dmg) |
-| Linux — Debian/Ubuntu/Mint 64 bits | [Baixar DEB](https://github.com/PeraTV/jaguarlab/releases/download/v0.5.7/JaguarLab-0.5.7-Linux-x64.deb) |
-| Linux — AppImage 64 bits | [Baixar AppImage](https://github.com/PeraTV/jaguarlab/releases/download/v0.5.7/JaguarLab-0.5.7-Linux-x64.AppImage) |
+| Android — celular e tablet | [Baixar JaguarLab 0.5.8 — APK](https://github.com/PeraTV/jaguarlab/releases/download/v0.5.8/JaguarLab-0.5.8-Android.apk) |
+| Windows 64 bits | [Baixar JaguarLab 0.5.8 — instalador](https://github.com/PeraTV/jaguarlab/releases/download/v0.5.8/JaguarLab-0.5.8-Setup.exe) |
+| macOS — Intel | [Baixar DMG Intel](https://github.com/PeraTV/jaguarlab/releases/download/v0.5.8/JaguarLab-0.5.8-macOS-x64.dmg) |
+| macOS — Apple Silicon | [Baixar DMG Apple Silicon](https://github.com/PeraTV/jaguarlab/releases/download/v0.5.8/JaguarLab-0.5.8-macOS-arm64.dmg) |
+| Linux — Debian/Ubuntu/Mint 64 bits | [Baixar DEB](https://github.com/PeraTV/jaguarlab/releases/download/v0.5.8/JaguarLab-0.5.8-Linux-x64.deb) |
+| Linux — AppImage 64 bits | [Baixar AppImage](https://github.com/PeraTV/jaguarlab/releases/download/v0.5.8/JaguarLab-0.5.8-Linux-x64.AppImage) |
 | Todas as versões | [Releases e arquivos de verificação](https://github.com/PeraTV/jaguarlab/releases) |
 
 Ao atualizar, instale por cima da versão anterior, sem desinstalar. Exporte um backup antes. O Android requer versão 7 ou superior; a capacidade de abrir modelos grandes depende da memória do aparelho.
@@ -28,10 +28,10 @@ Ao atualizar, instale por cima da versão anterior, sem desinstalar. Exporte um 
 
 ## Conheça o aplicativo em vídeo
 
-[![Assistir ao guia completo](app/public/tutorial-completo-poster.jpg)](https://raw.githubusercontent.com/PeraTV/jaguarlab/v0.5.7/guides/tutorial-completo.mp4)
+[![Assistir ao guia completo](app/public/tutorial-completo-poster.jpg)](https://raw.githubusercontent.com/PeraTV/jaguarlab/v0.5.8/guides/tutorial-completo.mp4)
 
-- [Guia completo — 3min53s, 21 capítulos](https://raw.githubusercontent.com/PeraTV/jaguarlab/v0.5.7/guides/tutorial-completo.mp4): telas reais do app, exemplos fictícios, voz neural em português e legendas.
-- [Backup, repositório privado e token — passo a passo atualizado](https://raw.githubusercontent.com/PeraTV/jaguarlab/v0.5.7/guides/tutorial-backup.mp4): telas demonstrativas com identidade JAGUAR LAB, sem contas ou credenciais reais.
+- [Guia completo — 3min53s, 21 capítulos](https://raw.githubusercontent.com/PeraTV/jaguarlab/v0.5.8/guides/tutorial-completo.mp4): telas reais do app, exemplos fictícios, voz neural em português e legendas.
+- [Backup, repositório privado e token — passo a passo atualizado](https://raw.githubusercontent.com/PeraTV/jaguarlab/v0.5.8/guides/tutorial-backup.mp4): telas demonstrativas com identidade JAGUAR LAB, sem contas ou credenciais reais.
 - [Índice dos capítulos e transcrição](docs/TUTORIAIS.md). No app, abra **Tutoriais** e toque no capítulo desejado.
 
 ## O que você pode fazer
@@ -127,7 +127,7 @@ Guarde a senha do backup. Não há recuperação dessa senha. Restaurar substitu
 
 Este repositório se chamava `onca3d-atualizacoes`. O endereço oficial agora é **PeraTV/jaguarlab**; links antigos são preservados para compatibilidade. Não envie tokens, senhas, documentos de clientes ou backups pessoais em issues, fotos ou comentários públicos.
 
-## Versão 0.5.7
+## Versão 0.5.8
 
 Corrige o instalador temporário ocupado no Windows, adota nomes **JaguarLab** nos downloads principais, atualiza o canal após a mudança de nome do repositório e amplia os tutoriais com vídeos e capítulos. Mantém a assinatura Android e as identidades internas para preservar instalações e registros existentes.
 
@@ -139,7 +139,7 @@ Sem Manter conectado, o token fica somente na sessão. Se você marcar Manter co
 
 No celular, Enviar backup. No PC ou tablet, Buscar backups, escolher a cópia e Importar do GitHub. Use o mesmo repositório e senha. A importação substitui a base do destino após confirmação e cópia de segurança; não há sincronização automática. Veja o [tutorial completo](docs/TUTORIAIS.md).
 
-## macOS e Linux (0.5.7)
+## macOS e Linux (0.5.8)
 
 - Mac Intel: **macOS-x64.dmg**. Mac com chip Apple M1 ou posterior: **macOS-arm64.dmg**. Abra o DMG e arraste JAGUAR LAB para Aplicativos. Para atualizar, feche o app e substitua a cópia anterior. Os dados ficam fora do aplicativo.
 - O pacote Mac usa assinatura ad hoc, sem certificado Developer ID nem notarização da Apple. O macOS pode bloquear a primeira abertura e exigir sua autorização nas opções de segurança do sistema. Não é uma versão da App Store. Não desative as proteções globais do sistema.
