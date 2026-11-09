@@ -5,46 +5,46 @@
   "available": true,
   "status": "preview",
   "release": {
-    "version": "0.5.7",
-    "notes": "Telegram somente no menu, sem destaque na tela inicial. Faça backup antes de atualizar.",
-    "publishedAt": "2026-11-09T02:24:15.331Z"
+    "version": "0.5.8",
+    "notes": "Bolinha vermelha com 1 no botão Atualizar quando houver versão nova. Faça backup antes de atualizar.",
+    "publishedAt": "2026-11-09T15:32:18.341Z"
   },
   "platforms": {
     "windows": {
-      "url": "https://github.com/PeraTV/onca3d-atualizacoes/releases/download/v0.5.7/JaguarLab-0.5.7-Setup.exe",
-      "canonicalUrl": "https://github.com/PeraTV/jaguarlab/releases/download/v0.5.7/JaguarLab-0.5.7-Setup.exe",
-      "sha256": "796274cd4723ee1768328e784d674d153ac72c681f1966bbce147bec9e26be6f",
-      "sizeBytes": 127568891
+      "url": "https://github.com/PeraTV/onca3d-atualizacoes/releases/download/v0.5.8/JaguarLab-0.5.8-Setup.exe",
+      "canonicalUrl": "https://github.com/PeraTV/jaguarlab/releases/download/v0.5.8/JaguarLab-0.5.8-Setup.exe",
+      "sha256": "df5e3d8fdfa82adfaafcf052a9b6845e230ace160a93614ac0082980af18e216",
+      "sizeBytes": 127569739
     },
     "android": {
-      "url": "https://github.com/PeraTV/onca3d-atualizacoes/releases/download/v0.5.7/Onca3D-0.5.7-Android.apk",
-      "canonicalUrl": "https://github.com/PeraTV/jaguarlab/releases/download/v0.5.7/JaguarLab-0.5.7-Android.apk",
-      "sha256": "1e39c5a68f38879c76c5ef68d05f6874824cc41014a51a751f75dc9302a01f17",
+      "url": "https://github.com/PeraTV/onca3d-atualizacoes/releases/download/v0.5.8/Onca3D-0.5.8-Android.apk",
+      "canonicalUrl": "https://github.com/PeraTV/jaguarlab/releases/download/v0.5.8/JaguarLab-0.5.8-Android.apk",
+      "sha256": "8af691967e08b6a82eb28a9b07ddfe554914e1925dde16c90ab4c8cb6531cafd",
       "sizeBytes": 5842171
     },
     "macos_x64": {
-      "url": "https://github.com/PeraTV/jaguarlab/releases/download/v0.5.7/JaguarLab-0.5.7-macOS-x64.dmg",
-      "canonicalUrl": "https://github.com/PeraTV/jaguarlab/releases/download/v0.5.7/JaguarLab-0.5.7-macOS-x64.dmg",
-      "sha256": "564eb8e7b41c0c03325326f05699cb9b8499fdc5b3c5d077e5a9ed318e139dc5",
-      "sizeBytes": 136018778
+      "url": "https://github.com/PeraTV/jaguarlab/releases/download/v0.5.8/JaguarLab-0.5.8-macOS-x64.dmg",
+      "canonicalUrl": "https://github.com/PeraTV/jaguarlab/releases/download/v0.5.8/JaguarLab-0.5.8-macOS-x64.dmg",
+      "sha256": "eefd793b84c698633b89bed75c2050dd0fca7b6cac0e4a997fbc97ed116a6f05",
+      "sizeBytes": 136019503
     },
     "macos_arm64": {
-      "url": "https://github.com/PeraTV/jaguarlab/releases/download/v0.5.7/JaguarLab-0.5.7-macOS-arm64.dmg",
-      "canonicalUrl": "https://github.com/PeraTV/jaguarlab/releases/download/v0.5.7/JaguarLab-0.5.7-macOS-arm64.dmg",
-      "sha256": "0ec929985c83aed227e9fe4dda0c57db3ecd12615771847eb44432eb17906c34",
-      "sizeBytes": 128823556
+      "url": "https://github.com/PeraTV/jaguarlab/releases/download/v0.5.8/JaguarLab-0.5.8-macOS-arm64.dmg",
+      "canonicalUrl": "https://github.com/PeraTV/jaguarlab/releases/download/v0.5.8/JaguarLab-0.5.8-macOS-arm64.dmg",
+      "sha256": "81c88812ff1a1992ecf7a45cc66caadeebfd4bf7b0b493d2fb02a8ccbd835b09",
+      "sizeBytes": 128823914
     },
     "linux_x64": {
-      "url": "https://github.com/PeraTV/jaguarlab/releases/download/v0.5.7/JaguarLab-0.5.7-Linux-x64.deb",
-      "canonicalUrl": "https://github.com/PeraTV/jaguarlab/releases/download/v0.5.7/JaguarLab-0.5.7-Linux-x64.deb",
-      "sha256": "db521321828db060471ec973faf595e897bd7946ed418d3138be1cfccd28ebca",
-      "sizeBytes": 107870032
+      "url": "https://github.com/PeraTV/jaguarlab/releases/download/v0.5.8/JaguarLab-0.5.8-Linux-x64.deb",
+      "canonicalUrl": "https://github.com/PeraTV/jaguarlab/releases/download/v0.5.8/JaguarLab-0.5.8-Linux-x64.deb",
+      "sha256": "d0073d82e55d4d782e33739a0f077fcc7ddbe6da9f82afa441bafc80beb90427",
+      "sizeBytes": 107870092
     },
     "linux_appimage_x64": {
-      "url": "https://github.com/PeraTV/jaguarlab/releases/download/v0.5.7/JaguarLab-0.5.7-Linux-x64.AppImage",
-      "canonicalUrl": "https://github.com/PeraTV/jaguarlab/releases/download/v0.5.7/JaguarLab-0.5.7-Linux-x64.AppImage",
-      "sha256": "42b9697d8da4020b3b156e085b4abd2f030f8fcf844228eb5802d7e1fdf61c71",
-      "sizeBytes": 134400562
+      "url": "https://github.com/PeraTV/jaguarlab/releases/download/v0.5.8/JaguarLab-0.5.8-Linux-x64.AppImage",
+      "canonicalUrl": "https://github.com/PeraTV/jaguarlab/releases/download/v0.5.8/JaguarLab-0.5.8-Linux-x64.AppImage",
+      "sha256": "2f76b662bc6863b1370cc5195a1cfb9e0625e760b14dddabc88374ccd49b9418",
+      "sizeBytes": 134404666
     }
   }
 }
